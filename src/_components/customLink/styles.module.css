@@ -1,0 +1,15 @@
+.link {
+  color: darkred;
+}
+
+.link:hover {
+  color: darkorange;
+}
+
+.link:active {
+  color: darkblue;
+}
+
+.link:visited {
+  color: darkgreen
+}
