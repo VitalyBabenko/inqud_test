@@ -1,0 +1,154 @@
+.nav,
+.navOpen {
+  height: 100%;
+
+  & ul {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    height: 100%;
+
+    & li a {
+      color: black;
+      font-size: 18px;
+      font-weight: 700;
+      line-height: normal;
+      text-decoration: none;
+    }
+
+    & div button {
+      position: relative;
+      color: black;
+      font-size: 18px;
+      font-weight: 700 !important;
+      line-height: normal;
+      text-decoration: none;
+      font-family: __Nunito_3dc409, __Nunito_Fallback_3dc409;
+    }
+
+    .dropdown {
+      align-items: flex-start;
+
+      &:before {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+      }
+
+      & ul {
+        left: 50%;
+        translate: -50%;
+        min-width: 200px;
+        width: fit-content;
+        padding: 24px;
+
+        span {
+          width: 100%;
+          text-align: start;
+          margin-left: 10px;
+        }
+
+        li {
+          width: 100%;
+
+          a {
+            padding: 8px !important;
+            font-weight: 400;
+            font-size: 18px;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 1279px) {
+  .nav,
+  .navOpen {
+    display: block;
+    position: absolute;
+    top: 73px;
+    left: -100vw;
+    width: 100%;
+    height: calc(100vh - 72px);
+    padding: 60px 0 16px;
+    transition: all 0.3s ease-in-out;
+    background: white;
+    z-index: 1;
+    max-height: 50vh;
+    overflow-y: scroll;
+
+    ul {
+      justify-content: start;
+      flex-direction: column;
+      max-width: 767px;
+      margin: 0 auto;
+
+      li a,
+      div button {
+        font-size: 24px !important;
+      }
+
+      div button {
+        margin-left: 20px !important;
+      }
+    }
+
+    .dropdown {
+      &:before {
+        height: 100%;
+        width: 100%;
+      }
+
+      button {
+        width: 100%;
+        justify-content: center;
+        margin-left: 10px !important;
+      }
+      ul {
+        position: relative;
+        top: 0;
+        left: 0;
+        width: 100%;
+        border: none;
+        box-shadow: none;
+        padding: 0 !important;
+        column-gap: 6px !important;
+
+        & span {
+          color: rgb(45, 52, 57);
+          font-weight: 700;
+          font-size: 18px;
+          margin: 16px auto 0 !important;
+          width: fit-content !important;
+        }
+
+        li {
+          a {
+            justify-content: center;
+
+            color: #2d3439;
+            font-size: 18px !important;
+            font-weight: 400;
+            line-height: 26px;
+          }
+        }
+      }
+    }
+  }
+
+  .navOpen {
+    left: 0vw;
+  }
+}
+
+@media (max-width: 767px) {
+  .nav,
+  .navOpen {
+    top: 55px;
+    ul {
+      gap: 14px;
+    }
+  }
+}
