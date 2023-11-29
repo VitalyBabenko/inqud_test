@@ -1,0 +1,49 @@
+.breadcrumb {
+  height: 100%;
+  max-width: calc(1920px - 120px);
+  margin: 0 auto;
+  padding: 10px 60px;
+
+  .slash {
+    margin: 0 6px;
+    color: rgba(81, 113, 133, 0.6);
+  }
+
+  .activeLink {
+    font-size: 14px;
+    color: rgb(45, 52, 57);
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.2s ease-in-out;
+
+    &:hover {
+      color: #067453;
+    }
+  }
+
+  a,
+  span {
+    font-size: 14px;
+    color: rgba(81, 113, 133, 0.6);
+    cursor: pointer;
+    text-decoration: none;
+  }
+}
+
+@media (max-width: 1536px) {
+  .breadcrumb {
+    padding: 10px 32px;
+  }
+}
+
+@media (max-width: 1279px) {
+  .breadcrumb {
+    padding: 10px 40px;
+  }
+}
+
+@media (max-width: 767px) {
+  .breadcrumb {
+    padding: 10px 16px;
+  }
+}

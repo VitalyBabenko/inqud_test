@@ -34,7 +34,7 @@ const links = [
       },
     ],
   },
-  { label: 'About us', href: '#' },
+  { label: 'Company', href: '#' },
   { label: 'Insights', href: '/insights' },
   { label: 'Help centre', href: '#' },
 ];

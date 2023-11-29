@@ -5,17 +5,31 @@ import Image from 'next/image';
 import styles from './styles.module.scss';
 import Navigation from '../navigation';
 import DropdownMenu from '../dropdownMenu';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+
+const langLinks = [
+  { label: 'English (US)', href: '/' },
+  { label: 'Deutsch', href: '/de' },
+  { label: 'Polski', href: '/pl' },
+];
 
 const Header = () => {
   const [isBurgerOpen, setIsBurgerOpen] = useState(false);
-  const isTablet = typeof window !== 'undefined' && window.innerWidth < 1279;
+  const [isMobile, setIsMobile] = useState(false);
 
-  const langLinks = [
-    { label: 'English (US)', href: '/' },
-    { label: 'Deutsch', href: '/de' },
-    { label: 'Polski', href: '/pl' },
-  ];
+  useEffect(() => {
+    const updateIsMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+
+    updateIsMobile();
+
+    window.addEventListener('resize', updateIsMobile);
+
+    return () => {
+      window.removeEventListener('resize', updateIsMobile);
+    };
+  }, []);
 
   const handleLinkClick = (e: React.MouseEvent<HTMLElement>) => {
     const target = e.target as HTMLElement;
@@ -39,19 +53,24 @@ const Header = () => {
             <Image src="/logoMobile.svg" alt="logo" width={32} height={32} />
           </Link>
 
-          <div className={isBurgerOpen || !isTablet ? styles.hidden : styles.logoLinks}>
-            <Link href="#">Business</Link>
-            <Link href="#">Personal</Link>
-          </div>
+          {!isBurgerOpen && (
+            <div className={styles.logoLinks}>
+              <Link href="#">Business</Link>
+              <Link href="#">Personal</Link>
+            </div>
+          )}
         </div>
 
         <Navigation isOpen={isBurgerOpen} />
 
         <div className={styles.settings}>
-          <div className={isBurgerOpen ? styles.lang : styles.hidden}>
-            <Image src="/earth.svg" alt="earth-icon" width={32} height={32} />
-            <DropdownMenu links={langLinks} buttonLabel="EN" />
-          </div>
+          {(!isMobile || isBurgerOpen) && (
+            <div className={styles.lang}>
+              <Image src="/earth.svg" alt="earth-icon" width={32} height={32} />
+              <DropdownMenu links={langLinks} buttonLabel="EN" />
+            </div>
+          )}
+
           <div className={isBurgerOpen ? styles.authOpen : styles.auth}>
             <Link className={styles.login} href="#">
               Log in
