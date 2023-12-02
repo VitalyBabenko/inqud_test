@@ -1,3 +1,4 @@
+import { Fragment } from 'react';
 import Link from 'next/link';
 import styles from './styles.module.scss';
 import DropdownMenu from '../dropdownMenu/DropdownMenu';
@@ -48,10 +49,9 @@ const Navigation = ({ isOpen }: NavigationProps) => {
     <nav className={isOpen ? styles.navOpen : styles.nav}>
       <ul>
         {links.map((link) => (
-          <>
+          <Fragment key={link.label}>
             {link.subLinks ? (
               <DropdownMenu
-                key={link.label}
                 className={styles.dropdown}
                 links={link.subLinks}
                 title={link.subLinksTitle}
@@ -62,7 +62,7 @@ const Navigation = ({ isOpen }: NavigationProps) => {
                 <Link href={link.href}>{link.label}</Link>
               </li>
             )}
-          </>
+          </Fragment>
         ))}
       </ul>
     </nav>

@@ -1,0 +1,117 @@
+.headingSection {
+  padding: 33px 0 56px;
+  width: 100%;
+  text-align: center;
+  font-weight: 400;
+
+  h2 {
+    color: rgba(45, 52, 57, 1);
+    margin-bottom: 4px;
+    color: #2d3439;
+    font-size: 56px;
+    line-height: 66px;
+    width: 100%;
+  }
+
+  p {
+    color: rgba(81, 113, 133, 0.8);
+    font-size: 24px;
+    line-height: 34px;
+    margin-bottom: 36px;
+  }
+
+  form.searchBlock {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    width: 478px;
+    margin: 0 auto;
+
+    .inputWrapper {
+      position: relative;
+      max-width: 350px;
+      height: 48px;
+
+      img {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        left: 13px;
+      }
+      input {
+        padding: 0 35px 0 46px;
+        width: 100%;
+        height: 100%;
+        border-radius: 42px;
+        background-color: #f3f6f8;
+        border: 1px solid #f3f6f8;
+        color: #2d3439;
+        font-size: 18px;
+        font-weight: 400;
+        line-height: 26px;
+
+        &::placeholder {
+          font-size: 18px;
+          font-weight: 400;
+          line-height: 24px;
+          color: #517185;
+          opacity: 0.6;
+        }
+      }
+    }
+
+    button {
+      border-radius: 54px;
+      background: #bfffc8;
+      border: none;
+      color: #077453;
+      text-align: center;
+      padding: 0 24px;
+      font-size: 18px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 27px;
+    }
+  }
+}
+
+@media (max-width: 767px) {
+  .headingSection {
+    width: calc(100% - 32px);
+    padding: 25px 16px 40px 16px;
+
+    h2 {
+      margin-bottom: 7px;
+      line-height: 62px;
+    }
+
+    p {
+      font-size: 18px;
+      overflow-wrap: break-word;
+      max-width: 85%;
+      margin: 0 auto;
+      line-height: 24px;
+      margin-bottom: 24px;
+    }
+
+    form.searchBlock {
+      flex-direction: column;
+      width: 100%;
+      gap: 8px;
+
+      .inputWrapper {
+        max-width: none;
+
+        input {
+          height: 46px;
+          width: calc(100% - 83px);
+        }
+      }
+
+      button {
+        height: 48px;
+        width: 100%;
+      }
+    }
+  }
+}

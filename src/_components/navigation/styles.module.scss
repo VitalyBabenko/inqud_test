@@ -23,7 +23,6 @@
       font-weight: 700 !important;
       line-height: normal;
       text-decoration: none;
-      font-family: __Nunito_3dc409, __Nunito_Fallback_3dc409;
     }
 
     .dropdown {
@@ -69,7 +68,7 @@
     display: block;
     position: absolute;
     top: 73px;
-    left: -100vw;
+    left: -200vw;
     width: 100%;
     height: calc(100vh - 72px);
     padding: 60px 0 16px;
