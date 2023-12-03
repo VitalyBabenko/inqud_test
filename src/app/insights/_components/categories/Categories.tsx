@@ -1,4 +1,4 @@
-import { Category } from '../../page';
+import { Category } from '@/types/category';
 import styles from './styles.module.scss';
 
 interface CategoriesProps {
