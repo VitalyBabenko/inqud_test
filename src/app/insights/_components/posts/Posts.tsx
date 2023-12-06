@@ -9,11 +9,22 @@ interface PostsProps {
 }
 
 const Posts = ({ posts }: PostsProps) => {
+  if (!posts.length) {
+    return (
+      <div className={styles.postsEmpty}>
+        <h5>Nothing was found for your request!</h5>
+      </div>
+    );
+  }
+
   return (
     <div className={styles.posts}>
       {posts.map((post) => (
         <Link className={styles.post} href={`/insights/${post.slug}`} key={post.id}>
-          <Image src={post.coverImage.url} alt="cover-image" width={370} height={221} />
+          <div className={styles.imageWrapper}>
+            <Image src={post.coverImage.url} alt="cover-image" width={370} height={250} />
+          </div>
+
           <p>{post.mainCategory.name}</p>
           <h3>{post.title}</h3>
           <div className={styles.postFooter}>

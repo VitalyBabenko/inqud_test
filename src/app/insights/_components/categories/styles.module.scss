@@ -18,12 +18,14 @@
     line-height: 30px;
     letter-spacing: 2.4px;
     cursor: pointer;
+    white-space: nowrap;
   }
 
   .selected {
     display: flex;
     gap: 8px;
-    padding: 23px 0 23px 80px;
+    padding: 23px 0;
+    margin-left: calc((100vw - 1400px) / 2);
 
     & li {
       background: rgb(191, 255, 200);
@@ -34,7 +36,8 @@
   .allCategories {
     display: flex;
     overflow-x: scroll;
-    padding: 23px 0 23px;
+    padding: 23px 0 23px 0;
+    padding-right: calc((100vw - 1400px) / 2);
     gap: 8px;
 
     &::-webkit-scrollbar {
@@ -44,7 +47,52 @@
     & li {
       width: 100%;
       color: rgb(81, 113, 133);
-      white-space: nowrap;
     }
+  }
+}
+
+@media (max-width: 1536px) {
+  .categories {
+    .selected {
+      margin-left: calc((100vw - 1216px) / 2);
+    }
+
+    .allCategories {
+      padding-right: calc((100vw - 1216px) / 2);
+    }
+  }
+}
+
+@media (max-width: 1279px) {
+  .categories {
+    .selected {
+      margin-left: calc((100vw - 767px) / 2);
+    }
+
+    .allCategories {
+      padding-right: calc((100vw - 767px) / 2);
+    }
+  }
+}
+
+@media (max-width: 767px) {
+  .categories {
+    .selected {
+      margin-left: 16px;
+    }
+
+    .allCategories {
+      padding-right: 16px;
+    }
+
+    li {
+      font-size: 14px;
+    }
+  }
+}
+
+@media (max-width: 576px) {
+  .categories li {
+    font-size: 18px;
   }
 }

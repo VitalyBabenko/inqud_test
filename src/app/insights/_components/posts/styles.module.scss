@@ -1,5 +1,27 @@
+.postsEmpty {
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  padding: 100px 0 125px;
+
+  h5 {
+    color: #2d3439;
+    font-size: 32px;
+    font-weight: 400;
+    line-height: 42px;
+  }
+}
+
+@media (max-width: 767px) {
+  .postsEmpty h5 {
+    padding: 0 10px;
+    font-size: 24px;
+    line-height: 34px;
+  }
+}
+
 .posts {
-  // padding: 56px 0 52px;
+  margin: 56px auto 52px;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   -webkit-box-pack: justify;
@@ -7,17 +29,26 @@
   gap: 44px 40px;
   justify-items: center;
   max-width: 1400px;
-  margin: 56px auto 52px;
 
   .post {
     width: 100%;
+
     text-decoration: none;
 
-    img:first-child {
+    .imageWrapper {
+      overflow: hidden;
+      position: relative;
       width: 100%;
       height: 250px;
       border-radius: 30px;
       margin-bottom: 30px;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.4s ease;
+      }
     }
 
     p {
@@ -43,14 +74,18 @@
       overflow: hidden;
       color: rgb(45, 52, 57);
       font-size: 32px;
+      display: -webkit-box;
       -webkit-box-orient: vertical;
       -webkit-line-clamp: 3;
       white-space: pre-wrap;
       text-align: start;
       font-weight: 700;
       margin-bottom: 16px;
-
       line-height: 42px;
+      display: -moz-box;
+      -moz-box-orient: vertical;
+      -moz-box-lines: 3;
+      max-height: 126px;
     }
 
     .postFooter {
@@ -69,6 +104,12 @@
         height: 4px;
       }
     }
+
+    &:hover {
+      .imageWrapper img {
+        transform: scale(1.1);
+      }
+    }
   }
 }
 
@@ -77,7 +118,7 @@
     max-width: 1216px;
 
     .post {
-      img:first-child {
+      .imageWrapper {
         height: 221px;
       }
     }
@@ -87,18 +128,62 @@
 @media (max-width: 1279px) {
   .posts {
     max-width: 767px;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 24px;
+    row-gap: 40px;
+
+    .imageWrapper {
+      height: 189px;
+    }
   }
 }
 
 @media (max-width: 1024px) {
   .posts {
-    padding: 56px 40px 52px;
+    margin: 56px auto 52px;
   }
 }
 
 @media (max-width: 767px) {
   .posts {
+    grid-template-columns: 1fr;
     max-width: 100%;
-    padding: 56px 16px 52px;
+
+    .post {
+      max-width: 389px;
+
+      .imageWrapper {
+        height: 260px;
+        margin-bottom: 21px;
+      }
+
+      h3 {
+        font-size: 24px;
+        line-height: 32px;
+      }
+    }
+  }
+}
+
+@media (max-width: 576px) {
+  .posts {
+    .post {
+      .imageWrapper {
+        margin-bottom: 24px;
+      }
+
+      p {
+        margin: 0 auto 12px;
+      }
+
+      h3 {
+        margin-bottom: 12px;
+        text-align: center;
+      }
+
+      .postFooter {
+        justify-content: center;
+      }
+    }
   }
 }
