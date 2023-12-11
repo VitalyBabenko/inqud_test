@@ -55,8 +55,8 @@ const Header = () => {
 
           {!isBurgerOpen && (
             <div className={styles.logoLinks}>
-              <Link href="#">Business</Link>
-              <Link href="#">Personal</Link>
+              <Link href="#">business</Link>
+              <Link href="#">personal</Link>
             </div>
           )}
         </div>

@@ -3,48 +3,48 @@ import Link from 'next/link';
 import styles from './styles.module.scss';
 import DropdownMenu from '../dropdownMenu/DropdownMenu';
 
-const links = [
-  {
-    label: 'Products',
-    href: '#',
-    subLinksTitle: 'Business',
-    subLinks: [
-      {
-        label: 'Crypto widget',
-        href: '/#',
-      },
-      {
-        label: 'API',
-        href: '/#',
-      },
-      {
-        label: 'Card 2 crypto',
-        href: '/#',
-      },
-      {
-        label: 'Crypto exchange',
-        href: '/#',
-      },
-      {
-        label: 'Recurring payments',
-        href: '/#',
-      },
-      {
-        label: 'Accept crypto',
-        href: '/#',
-      },
-    ],
-  },
-  { label: 'Company', href: '#' },
-  { label: 'Insights', href: '/insights' },
-  { label: 'Help centre', href: '#' },
-];
-
 interface NavigationProps {
   isOpen: boolean;
 }
 
 const Navigation = ({ isOpen }: NavigationProps) => {
+  const links = [
+    {
+      label: 'Products',
+      href: '#',
+      subLinksTitle: 'Business',
+      subLinks: [
+        {
+          label: 'Crypto widget',
+          href: '/#',
+        },
+        {
+          label: 'API',
+          href: '/#',
+        },
+        {
+          label: 'Card 2 crypto',
+          href: '/#',
+        },
+        {
+          label: 'Crypto exchange',
+          href: '/#',
+        },
+        {
+          label: 'Recurring payments',
+          href: '/#',
+        },
+        {
+          label: 'Accept crypto',
+          href: '/#',
+        },
+      ],
+    },
+    { label: 'Company', href: '#' },
+    { label: 'Insights', href: '/insights' },
+    { label: 'Help centre', href: '#' },
+  ];
+
   return (
     <nav className={isOpen ? styles.navOpen : styles.nav}>
       <ul>

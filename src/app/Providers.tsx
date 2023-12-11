@@ -1,5 +1,3 @@
-'use client';
-
 interface ProvidersProps {
   children: React.ReactNode;
 }

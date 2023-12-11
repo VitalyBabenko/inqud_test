@@ -4,7 +4,7 @@ export default async function Home() {
   return (
     <main>
       <h1>Home</h1>
-      <CustomLink href={'/example-page'}>Example page</CustomLink>
+      <CustomLink href={'/insights'}>Insights</CustomLink>
     </main>
   );
 }
