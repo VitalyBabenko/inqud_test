@@ -25,7 +25,7 @@ const Posts = ({ posts }: PostsProps) => {
             <Image src={post.coverImage.url} alt="cover-image" width={370} height={250} />
           </div>
 
-          <p>{post.mainCategory.name}</p>
+          <p>{post.mainTag.name}</p>
           <h3>{post.title}</h3>
           <div className={styles.postFooter}>
             <span>{post.publishDate}</span>

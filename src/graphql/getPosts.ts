@@ -1,30 +1,3 @@
-// export const GET_POSTS_QUERY = `
-//     query GetPosts($search: String!) {
-//         allPosts(
-//         filter: {
-//             OR: [
-//             { title: { matches: { pattern: $search } } }
-//             { content: { matches: { pattern: $search } } }
-//             ]
-//         }
-//         ) {
-//         id
-//         publishDate
-//         slug
-//         title
-//         coverImage {
-//             url
-//         }
-//         mainCategory {
-//             name
-//         }
-//         content {
-//             value
-//         }
-//         }
-//     }
-// `;
-
 export const GET_POSTS_QUERY = `
 query GetPosts($search: String!, $first: IntType = 9, $skip: IntType = 0) {
     allPosts(
@@ -42,7 +15,7 @@ query GetPosts($search: String!, $first: IntType = 9, $skip: IntType = 0) {
       content {
         value
       }
-      mainCategory {
+      mainTag {
         name
       }
     }
@@ -52,8 +25,8 @@ query GetPosts($search: String!, $first: IntType = 9, $skip: IntType = 0) {
   }
 `;
 
-export const GET_POSTS_BY_CATEGORIES_QUERY = `
-    query GetPostsByCategories($search: String!, $in: [ItemId] = "") {
+export const GET_POSTS_BY_TAGS_QUERY = `
+    query GetPostsByTags($search: String!, $in: [ItemId] = "") {
         allPosts(
         filter: {
             OR: [
@@ -61,7 +34,7 @@ export const GET_POSTS_BY_CATEGORIES_QUERY = `
             { content: { matches: { pattern: $search } } },
             ],
             AND: [
-            { mainCategory: { in: $in } }
+            { mainTag: { in: $in } }
             ]
         }
         ) {
@@ -72,8 +45,8 @@ export const GET_POSTS_BY_CATEGORIES_QUERY = `
         coverImage {
             url
         }
-        mainCategory {
-            name
+        mainTag {
+          name
         }
         content {
             value

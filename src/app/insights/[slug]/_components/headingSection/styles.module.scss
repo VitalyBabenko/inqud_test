@@ -1,0 +1,42 @@
+.headingSection {
+  padding: 54px 0;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #bfffc8;
+
+  a {
+    display: flex;
+    justify-content: space-between;
+    gap: 6px;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 60px;
+    padding: 12px 24px;
+    text-decoration: none;
+    background: #fff;
+    border-radius: 42px;
+    border: 1px solid #f4f5fa;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 26px;
+    color: #517185;
+
+    & img {
+      margin: auto 0;
+      rotate: 90deg;
+    }
+  }
+
+  h1 {
+    text-align: center;
+    font-size: 56px;
+    font-weight: 400;
+    line-height: 62px;
+    letter-spacing: 0em;
+    max-width: 678px;
+    margin: 0px auto;
+  }
+}

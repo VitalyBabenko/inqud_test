@@ -27,7 +27,7 @@ const Breadcrumb = () => {
           key={index}
           className={index === pathSegments.length - 2 ? styles.activeLink : ''}
         >
-          {fromCapitalLetter(segment)}
+          {fromCapitalLetter(segment).replace(/-/g, ' ')}
           {index < pathSegments.length - 1 && <span className={styles.slash}> / </span>}
         </Link>
       ))}

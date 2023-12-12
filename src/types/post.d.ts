@@ -1,5 +1,5 @@
-import { Category } from './category';
 import { PostContent } from './postContent';
+import { Tag } from './tag';
 
 export type CoverImage = {
   url: string;
@@ -11,7 +11,7 @@ interface Post {
   slug: string;
   title: string;
   coverImage: CoverImage;
-  mainCategory: Category;
+  mainTag: Tag;
   content: PostContent;
 }
 
