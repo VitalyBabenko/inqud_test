@@ -50,7 +50,7 @@
     line-height: 62px;
     letter-spacing: 0em;
     max-width: 678px;
-    margin: 0px auto;
+    margin: 0px auto 16px;
   }
 
   .postInfo {
@@ -76,6 +76,35 @@
     }
     img[alt='right-decor'] {
       transform: translateX(43%);
+    }
+  }
+}
+
+@media (max-width: 1279px) {
+  .headingSection {
+    a {
+      position: relative;
+      left: 0;
+      top: 11px;
+      padding: 9px 24px;
+    }
+
+    img[alt='left-decor'],
+    img[alt='right-decor'] {
+      display: none;
+    }
+  }
+}
+
+@media (max-width: 767px) {
+  .headingSection {
+    h1 {
+      padding: 0 16px;
+      font-size: 40px;
+      font-weight: 400;
+      line-height: 46px;
+      letter-spacing: -0.1px;
+      max-width: 100%;
     }
   }
 }
