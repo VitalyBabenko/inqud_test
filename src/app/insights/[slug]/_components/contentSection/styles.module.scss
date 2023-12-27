@@ -94,43 +94,49 @@
       }
     }
   }
-
-  // .asideRight {
-  //   width: 100%;
-  //   max-width: 320px;
-  //   display: flex;
-  //   flex-direction: column;
-  //   align-items: center;
-
-  //   .asideItem {
-  //     width: 100%;
-  //     border-radius: 1rem;
-  //     background: rgb(244, 245, 250);
-  //     padding: 0.5rem 1rem;
-  //     display: flex;
-  //     justify-content: flex-start;
-  //     flex-direction: column;
-  //     max-height: fit-content !important;
-
-  //     p {
-  //       font-weight: 700;
-  //       font-size: 18px;
-  //       line-height: 26px;
-  //     }
-
-  //     span {
-  //       color: rgb(81, 113, 133);
-  //       font-size: 18px;
-  //       font-weight: 400;
-  //       line-height: 26px;
-  //     }
-  //   }
-  // }
 }
 
 @media (max-width: 1536px) {
   .contentSection {
     max-width: 1216px;
     gap: 24px;
+
+    .asideLeft,
+    .asideRight {
+      width: 286px;
+    }
+  }
+}
+
+@media (max-width: 1279px) {
+  .contentSection {
+    flex-direction: column;
+    max-width: 767px;
+
+    .asideLeft {
+      display: none;
+    }
+
+    .asideRight {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      width: 100%;
+      gap: 8px;
+
+      .asideItem {
+        max-width: none;
+        width: auto;
+      }
+    }
+  }
+}
+
+@media (max-width: 767px) {
+  .contentSection {
+    padding: 0 32px;
+
+    .asideRight {
+      display: flex;
+    }
   }
 }
