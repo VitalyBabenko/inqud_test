@@ -1,7 +1,7 @@
 export const GET_POSTS_QUERY = `
 query GetPosts($search: String!, $first: IntType = 9, $skip: IntType = 0) {
     allPosts(
-      filter: {OR: [{title: {matches: {pattern: $search}}}, {content: {matches: {pattern: $search}}}]}
+      filter: {OR: [{title: {matches: {pattern: $search}}}]}
       first: $first
       skip: $skip
     ) {
@@ -13,7 +13,11 @@ query GetPosts($search: String!, $first: IntType = 9, $skip: IntType = 0) {
         url
       }
       content {
-        value
+        title
+        text {
+          blocks
+          value
+        }
       }
       mainTag {
         name

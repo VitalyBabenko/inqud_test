@@ -5,6 +5,18 @@ export type CoverImage = {
   url: string;
 };
 
+export type Industries = {
+  name: string;
+};
+
+export type Products = {
+  name: string;
+};
+
+export type Authors = {
+  name: string;
+};
+
 interface Post {
   id: string;
   publishDate: string;
@@ -13,6 +25,9 @@ interface Post {
   coverImage: CoverImage;
   mainTag: Tag;
   content: PostContent;
+  industries: Industries;
+  products: Products;
+  authors: Authors;
 }
 
 export { CoverImage, Post };

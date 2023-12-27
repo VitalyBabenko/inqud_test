@@ -9,7 +9,13 @@ export const GET_FULL_POST = `
             name
         }
         content {
+          title
+          text {
             value
+          }
+          image {
+            url
+          }
         }
         publishDate
         industries {

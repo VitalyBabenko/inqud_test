@@ -20,11 +20,8 @@ interface RootNode {
 }
 
 export declare type StructuredText<R1 extends Record = Record, R2 extends Record = R1> = {
-  /** A DatoCMS compatible document */
   value: Document;
-  /** Blocks associated with the Structured Text */
   blocks?: R1[];
-  /** Links associated with the Structured Text */
   links?: R2[];
 };
 

@@ -19,7 +19,8 @@ interface HeadingNode {
 export const findHeadings = (content: StructuredTextGraphQlResponse): string[] => {
   const result: HeadingNode[] = [];
   const value = content.value.document;
-  //   console.log(value);
+
+  console.log(content);
 
   const traverse = (node: any) => {
     if (node.type === 'heading') {

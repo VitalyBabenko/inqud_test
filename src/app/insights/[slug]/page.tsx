@@ -18,7 +18,13 @@ const PostPage = async ({ params: { slug } }: PostPageProps) => {
     <main>
       <Breadcrumb />
       <HeadingSection title={post.title} readingTime={readingTime} publishDate={post.publishDate} />
-      <ContentSection content={post.content} />
+      <ContentSection
+        content={post.content}
+        industries={post.industries}
+        products={post.products}
+        tags={post.allTags}
+        authors={post.authors}
+      />
     </main>
   );
 };
