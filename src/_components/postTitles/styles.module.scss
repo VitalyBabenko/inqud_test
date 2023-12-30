@@ -1,0 +1,51 @@
+.asideLeft {
+  position: sticky;
+  top: 140px;
+  width: 321px;
+  height: fit-content;
+  flex-shrink: 0;
+  max-width: 321px;
+
+  p {
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 32px;
+    margin-bottom: 16px;
+  }
+
+  ul {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    a {
+      display: block;
+      color: #517185;
+      font-weight: 400;
+      font-size: 18px;
+      line-height: 26px;
+      transform: translateX(0px);
+      transition: all 0.2s ease 0s;
+      text-decoration: none;
+    }
+
+    a.active {
+      border-left: 2px solid rgb(7, 116, 83);
+      color: #077453;
+      font-weight: 700;
+      padding-left: 10px;
+    }
+  }
+}
+
+@media (max-width: 1536px) {
+  .asideLeft {
+    width: 286px;
+  }
+}
+
+@media (max-width: 1279px) {
+  .asideLeft {
+    display: none;
+  }
+}

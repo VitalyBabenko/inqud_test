@@ -3,12 +3,12 @@
 import { StructuredText } from 'react-datocms';
 import styles from './styles.module.scss';
 import { StructuredTextGraphQlResponse } from 'datocms-structured-text-to-html-string';
-
 import Link from 'next/link';
 import { InView } from 'react-intersection-observer';
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Authors, Industries, Products } from '@/types/post';
 import { Tag } from '@/types/tag';
+import PostTitles from '@/_components/postTitles';
 
 type Article = {
   title: string;
@@ -24,8 +24,8 @@ type ContentSectionProps = {
 };
 
 const ContentSection = ({ content, industries, products, tags, authors }: ContentSectionProps) => {
-  const headings = content.map((article) => article.title);
-  const [activeTitle, setActiveTitle] = useState<string>(headings[0]);
+  const titles = content.map((article) => article.title);
+  const [activeTitle, setActiveTitle] = useState<string>(titles[0]);
   const handleIntersection = (inView: boolean, entry: IntersectionObserverEntry, title: string) => {
     if (inView) {
       setActiveTitle(title);
@@ -34,33 +34,22 @@ const ContentSection = ({ content, industries, products, tags, authors }: Conten
 
   return (
     <div className={styles.contentSection}>
-      <div className={styles.asideLeft}>
-        <p>Contents</p>
-        <ul className={styles.headings}>
-          {headings.map((heading) => (
-            <Link
-              key={heading}
-              href={`#${heading}`}
-              className={activeTitle === heading ? styles.active : ''}
-            >
-              {heading}
-            </Link>
-          ))}
-        </ul>
-      </div>
+      <PostTitles titles={titles} activeTitle={activeTitle} />
       <div className={styles.center}>
         {content.map((article, i): any => (
           <InView
-            as="div"
             key={i}
-            title={article.title}
+            as="div"
             onChange={(inView, entry) => handleIntersection(inView, entry, article.title)}
           >
-            {article.title && <h2>{article.title}</h2>}
-            <StructuredText key={article.title} data={article.text} />
+            <section id={article.title}>
+              {article.title && <h2>{article.title}</h2>}
+              <StructuredText key={article.title} data={article.text} />
+            </section>
           </InView>
         ))}
       </div>
+
       <div className={styles.asideRight}>
         <div className={styles.asideItem}>
           <p>Industries</p>

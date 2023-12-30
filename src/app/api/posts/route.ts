@@ -27,14 +27,24 @@ export async function GET(req: NextRequest) {
 
     tags.length ? (variables.in = tags) : null;
 
-    const response = await performRequest({
+    const { data } = await performRequest({
       query,
       variables,
     });
 
+    const posts = data.allPosts;
+    let postsCount;
+    if (search.length) {
+      postsCount = data.allPosts.length;
+    } else if (data?._allPostsMeta?.count) {
+      postsCount = data?._allPostsMeta?.count;
+    } else {
+      postsCount = data.allPosts.length;
+    }
+
     return NextResponse.json({
-      posts: response.data.allPosts,
-      postsCount: response.data._allPostsMeta.count,
+      posts,
+      postsCount,
     });
   } catch (error) {
     console.log(error);

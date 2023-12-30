@@ -17,6 +17,7 @@ export const GET_FULL_POST = `
             url
           }
         }
+        timeToRead
         publishDate
         industries {
             name

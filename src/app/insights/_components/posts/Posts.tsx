@@ -1,7 +1,6 @@
 import { Post } from '@/types/post';
 import styles from './styles.module.scss';
 import Image from 'next/image';
-import { calculateReadingPostTime } from '@/utils/calculateReadingPostTime';
 import Link from 'next/link';
 
 interface PostsProps {
@@ -30,7 +29,7 @@ const Posts = ({ posts }: PostsProps) => {
           <div className={styles.postFooter}>
             <span>{post.publishDate}</span>
             <Image src="/dot.svg" alt="dot" width={4} height={4} />
-            <span>{calculateReadingPostTime(post.content)} min read</span>
+            <span>{post.timeToRead.toString()} min read</span>
           </div>
         </Link>
       ))}

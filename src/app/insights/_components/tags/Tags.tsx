@@ -1,4 +1,3 @@
-import { Category } from '@/types/category';
 import styles from './styles.module.scss';
 import { useEffect, useState } from 'react';
 import { Tag } from '@/types/tag';
@@ -27,7 +26,7 @@ const Tags: React.FC<TagsProps> = ({
     setFilterPostsFlag(true);
   };
 
-  const removeFromSelected = (tag: Category) => {
+  const removeFromSelected = (tag: Tag) => {
     setAllTags((prevAllTags) => [...prevAllTags, tag]);
 
     setSelectedTags((prevSelectedTags) => {

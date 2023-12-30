@@ -1,7 +1,7 @@
 'use client';
 
 import Breadcrumb from '@/_components/breadcrumb';
-import React, { FormEvent, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import HeadingSection from './_components/headingSection';
 import Posts from './_components/posts';
 import { Post } from '@/types/post';
@@ -31,24 +31,26 @@ const Insights = () => {
     getData();
   }, []);
 
-  const filterPosts = async (event: FormEvent | null = null) => {
-    if (event) {
-      event.preventDefault();
+  const filterPosts = async (search: string | null = inputValue) => {
+    const tags = selectedTags.map((tag) => tag.id);
+    const first = POSTS_PER_PAGE;
+    let skip = (currentPage - 1) * POSTS_PER_PAGE;
+
+    if (inputValue) {
+      skip = 0;
+      setCurrentPage(1);
     }
+
     const { data } = await axios.get('/api/posts', {
       params: {
-        search: inputValue,
-        tags: selectedTags.map((tag) => tag.id),
-        first: POSTS_PER_PAGE,
-        skip: (currentPage - 1) * POSTS_PER_PAGE,
+        search,
+        tags,
+        first,
+        skip,
       },
     });
 
-    if (data.posts.length < 6) {
-      setAllPostsCount(data.posts.length);
-    } else {
-      setAllPostsCount(data.postsCount);
-    }
+    setAllPostsCount(data.postsCount);
     setPosts(data.posts);
   };
 

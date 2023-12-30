@@ -12,13 +12,7 @@ query GetPosts($search: String!, $first: IntType = 9, $skip: IntType = 0) {
       coverImage {
         url
       }
-      content {
-        title
-        text {
-          blocks
-          value
-        }
-      }
+      timeToRead
       mainTag {
         name
       }
@@ -30,34 +24,29 @@ query GetPosts($search: String!, $first: IntType = 9, $skip: IntType = 0) {
 `;
 
 export const GET_POSTS_BY_TAGS_QUERY = `
-    query GetPostsByTags($search: String!, $in: [ItemId] = "") {
+    query GetPostsByTags($search: String!, $in: [ItemId] = []) {
         allPosts(
-        filter: {
-            OR: [
-            { title: { matches: { pattern: $search } } },
-            { content: { matches: { pattern: $search } } },
-            ],
-            AND: [
-            { mainTag: { in: $in } }
-            ]
-        }
+            filter: {
+                OR: [
+                    { title: { matches: { pattern: $search } } },
+                ],
+                AND: [
+                    { mainTag: { in: $in } }
+                ]
+            }
         ) {
-        id
-        publishDate
-        slug
-        title
-        coverImage {
-            url
+            id
+            publishDate
+            slug
+            title
+            coverImage {
+                url
+            }
+            timeToRead
+            mainTag {
+                name
+            }
         }
-        mainTag {
-          name
-        }
-        content {
-            value
-        }
-        }
-        _allPostsMeta {
-            count
-        }
+        
     }
 `;

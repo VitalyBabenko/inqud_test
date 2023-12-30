@@ -28,6 +28,7 @@ interface Post {
   industries: Industries;
   products: Products;
   authors: Authors;
+  timeToRead: Number;
 }
 
 export { CoverImage, Post };
