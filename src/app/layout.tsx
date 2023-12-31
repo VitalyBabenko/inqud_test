@@ -1,25 +1,11 @@
-import type { Metadata } from 'next';
-import { Urbanist } from 'next/font/google';
-import 'reset-css';
-import Providers from '@/app/Providers';
-import Header from '@/_components/header';
+import { ReactNode } from 'react';
 
-const urbanist = Urbanist({ subsets: ['latin'] });
-
-export const metadata: Metadata = {
-  title: 'Inqud',
-  robots: 'noindex,nofollow',
+type Props = {
+  children: ReactNode;
 };
 
-export default async function RootLayout({ children }: { children: React.ReactNode }) {
-  return (
-    <html lang="en">
-      <body className={urbanist.className}>
-        <Providers>
-          <Header />
-          {children}
-        </Providers>
-      </body>
-    </html>
-  );
+// Since we have a `not-found.tsx` page on the root, a layout file
+// is required, even if it's just passing children through.
+export default function RootLayout({ children }: Props) {
+  return children;
 }

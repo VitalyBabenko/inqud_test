@@ -1,10 +1,5 @@
-import CustomLink from '@/_components/customLink';
+import { redirect } from 'next/navigation';
 
-export default async function Home() {
-  return (
-    <main>
-      <h1>Home</h1>
-      <CustomLink href={'/insights'}>Insights</CustomLink>
-    </main>
-  );
+export default function RootPage() {
+  redirect('/en');
 }

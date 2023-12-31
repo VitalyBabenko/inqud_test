@@ -5,5 +5,6 @@ const nextConfig = {
     domains: ['www.datocms-assets.com'],
   },
 };
+const withNextIntl = require('next-intl/plugin')('./src/config.ts');
 
-module.exports = nextConfig;
+module.exports = withNextIntl(nextConfig);
