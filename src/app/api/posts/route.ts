@@ -18,14 +18,16 @@ export async function GET(req: NextRequest) {
     const first = searchParams.get('first') || 6; //FIXME: add variable ALL_POSTS_COUNT
     const skip = searchParams.get('skip') || 0;
 
-    const query = tags.length ? GET_POSTS_BY_TAGS_QUERY : GET_POSTS_QUERY;
+    const query = tags?.length ? GET_POSTS_BY_TAGS_QUERY : GET_POSTS_QUERY;
     const variables: RequestVariables = {
       search,
       first: +first,
       skip: +skip,
     };
 
-    tags.length ? (variables.in = tags) : null;
+    if (tags?.length) {
+      variables.in = tags;
+    }
 
     const { data } = await performRequest({
       query,
