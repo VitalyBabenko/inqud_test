@@ -14,7 +14,7 @@ export const dynamic = 'force-dynamic';
 
 export async function GET(req: NextRequest) {
   try {
-    const searchParams = req?.nextUrl.searchParams;
+    const searchParams = req.nextUrl.searchParams;
     const search = searchParams.get('search') || '';
     const tags = searchParams.getAll('tags[]');
     const first = searchParams.get('first') || 6; //FIXME: add variable ALL_POSTS_COUNT
