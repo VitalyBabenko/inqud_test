@@ -3,8 +3,6 @@ import { performRequest } from '@/lib/datocms';
 import { NextRequest, NextResponse } from 'next/server';
 
 export async function GET(req: NextRequest) {
-  //   console.log(req);
-
   try {
     const pathname = req.nextUrl.pathname;
     const pathParts = pathname.split('/');
@@ -20,5 +18,8 @@ export async function GET(req: NextRequest) {
     return NextResponse.json({ post: data.post });
   } catch (error) {
     console.log(error);
+    return NextResponse.json({
+      message: `getPost error: ${error}`,
+    });
   }
 }

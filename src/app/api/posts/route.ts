@@ -12,7 +12,7 @@ type RequestVariables = {
 
 export async function GET(req: NextRequest) {
   try {
-    const { searchParams } = req.nextUrl;
+    const searchParams = new URLSearchParams(req.nextUrl.search);
     const search = searchParams.get('search') || '';
     const tags = searchParams.getAll('tags[]');
     const first = searchParams.get('first') || 6; //FIXME: add variable ALL_POSTS_COUNT
@@ -48,5 +48,8 @@ export async function GET(req: NextRequest) {
     });
   } catch (error) {
     console.log(error);
+    return NextResponse.json({
+      message: `getPosts error: ${error}`,
+    });
   }
 }

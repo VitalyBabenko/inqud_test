@@ -1,32 +1,26 @@
-interface Post {
-  userId: string;
-  id: string;
-  title: string;
-  body: string;
-}
+import { MetadataRoute } from 'next';
 
-const getSortedPostsData = async () => {
-  if (!process.env.NEXT_PUBLIC_API_URL) {
-    throw new Error('Please define the NEXT_PUBLIC_API_URL environment variable inside .env.local');
-  }
+export default function sitemap(): MetadataRoute.Sitemap {
+  const URL = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000';
 
-  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/posts`);
-  return (await response.json()) as Post[];
-};
-
-const URL = process.env.NEXT_PUBLIC_SITE_URL;
-
-// https://nextjs.org/docs/app/api-reference/file-conventions/metadata/sitemap
-export default async function sitemap() {
-  const posts = (await getSortedPostsData()).map(({ id }) => ({
-    url: `${URL}/blog/${id}`,
-    lastModified: new Date().toISOString(),
-  }));
-
-  const routes = ['', '/example-page', '/blog'].map((route) => ({
-    url: `${URL}${route}`,
-    lastModified: new Date().toISOString(),
-  }));
-
-  return [...routes, ...posts];
+  return [
+    {
+      url: URL,
+      lastModified: new Date(),
+      changeFrequency: 'yearly',
+      priority: 1,
+    },
+    {
+      url: `${URL}/insights`,
+      lastModified: new Date(),
+      changeFrequency: 'weekly',
+      priority: 0.9,
+    },
+    {
+      url: `${URL}/insights/[slag]`,
+      lastModified: new Date(),
+      changeFrequency: 'weekly',
+      priority: 0.5,
+    },
+  ];
 }
