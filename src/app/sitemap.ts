@@ -19,7 +19,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     {
       url: `${URL}/insights/[slag]`,
       lastModified: new Date(),
-      changeFrequency: 'weekly',
+      changeFrequency: 'always',
       priority: 0.5,
     },
   ];

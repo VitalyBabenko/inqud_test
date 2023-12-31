@@ -5,16 +5,22 @@ export type CoverImage = {
   url: string;
 };
 
-export type Industries = {
+export type Industry = {
   name: string;
 };
 
-export type Products = {
+export type Product = {
   name: string;
 };
 
-export type Authors = {
+export type Author = {
   name: string;
+};
+
+export type PostContent = {
+  title: string;
+  text: StructuredTextGraphQlResponse;
+  image: ImageBitmap | null;
 };
 
 interface Post {
@@ -25,10 +31,11 @@ interface Post {
   coverImage: CoverImage;
   mainTag: Tag;
   content: PostContent;
-  industries: Industries;
-  products: Products;
-  authors: Authors;
-  timeToRead: Number;
+  industries: Industry[];
+  products: Product[];
+  authors: Author[];
+  allTags: Tag[];
+  timeToRead: number;
 }
 
 export { CoverImage, Post };

@@ -4,11 +4,11 @@ import Image from 'next/image';
 
 interface HeadingSection {
   title: string;
-  readingTime: string;
+  timeToRead: number;
   publishDate: string;
 }
 
-const HeadingSection = ({ title, readingTime, publishDate }: HeadingSection) => {
+const HeadingSection = ({ title, timeToRead, publishDate }: HeadingSection) => {
   return (
     <div className={styles.headingSection}>
       <Image src="/page-decor-left.svg" width={724} height={360} alt="left-decor" />
@@ -21,7 +21,7 @@ const HeadingSection = ({ title, readingTime, publishDate }: HeadingSection) => 
       <div className={styles.postInfo}>
         <span>{publishDate}</span>
         <Image src="/dot.svg" alt="decor" width={4} height={4} />
-        <span>{readingTime} min read</span>
+        <span>{timeToRead} min read</span>
       </div>
     </div>
   );

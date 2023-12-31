@@ -2,25 +2,20 @@
 
 import { StructuredText } from 'react-datocms';
 import styles from './styles.module.scss';
-import { StructuredTextGraphQlResponse } from 'datocms-structured-text-to-html-string';
+
 import Link from 'next/link';
 import { InView } from 'react-intersection-observer';
 import { useState } from 'react';
-import { Authors, Industries, Products } from '@/types/post';
+import { Author, Industry, PostContent, Product } from '@/types/post';
 import { Tag } from '@/types/tag';
 import PostTitles from '@/_components/postTitles';
 
-type Article = {
-  title: string;
-  text: StructuredTextGraphQlResponse;
-};
-
 type ContentSectionProps = {
-  content: Article[];
-  industries: Industries[];
-  products: Products[];
+  content: PostContent[];
+  industries: Industry[];
+  products: Product[];
   tags: Tag[];
-  authors: Authors[];
+  authors: Author[];
 };
 
 const ContentSection = ({ content, industries, products, tags, authors }: ContentSectionProps) => {
