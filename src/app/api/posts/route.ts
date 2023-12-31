@@ -12,7 +12,7 @@ type RequestVariables = {
 
 export async function GET(req: NextRequest) {
   try {
-    const searchParams = new URLSearchParams(req.nextUrl.search);
+    const searchParams = new URLSearchParams(req.url);
     const search = searchParams.get('search') || '';
     const tags = searchParams.getAll('tags[]');
     const first = searchParams.get('first') || 6; //FIXME: add variable ALL_POSTS_COUNT
