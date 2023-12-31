@@ -47,6 +47,5 @@ export const GET_POSTS_BY_TAGS_QUERY = `
                 name
             }
         }
-        
     }
 `;
