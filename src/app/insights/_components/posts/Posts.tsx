@@ -8,7 +8,7 @@ interface PostsProps {
 }
 
 const Posts = ({ posts }: PostsProps) => {
-  if (!posts.length) {
+  if (!posts?.length) {
     return (
       <div className={styles.postsEmpty}>
         <h5>Nothing was found for your request!</h5>
