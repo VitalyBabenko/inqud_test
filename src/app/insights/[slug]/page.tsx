@@ -11,7 +11,7 @@ type PostPageProps = {
 };
 
 const PostPage = async ({ params: { slug } }: PostPageProps) => {
-  const response = await fetch(`${URL}/api/posts/${slug}`);
+  const response = await fetch(`https://${URL}/api/posts/${slug}`);
   const { post } = await response.json();
 
   return (
