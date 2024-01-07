@@ -11,7 +11,13 @@ import { POSTS_PER_PAGE } from './_components/pagination/Pagination';
 import { Tag } from '@/types/tag';
 import Tags from './_components/tags';
 
-const Insights = () => {
+type Props = {
+  params: {
+    locale: string;
+  };
+};
+
+const Insights = ({ params }: Props) => {
   const [inputValue, setInputValue] = useState<string>('');
   const [posts, setPosts] = useState<Post[]>([]);
   const [allTags, setAllTags] = useState<Tag[]>([]);
@@ -25,7 +31,7 @@ const Insights = () => {
       setPosts(postsResp.data.posts);
       setAllPostsCount(postsResp.data.postsCount);
 
-      const tagsResp = await axios.get('/api/tags');
+      const tagsResp = await axios.get(`/api/tags`);
       setAllTags(tagsResp.data);
     };
     getData();

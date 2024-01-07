@@ -8,12 +8,14 @@ type RequestVariables = {
   first: number;
   skip: number;
   tags?: [string];
+  locale: string;
 };
 
 export const dynamic = 'force-dynamic';
 
 export async function GET(req: NextRequest) {
   try {
+    const locale = req.nextUrl.pathname.split('/')[1] || 'en';
     const searchParams = req.nextUrl.searchParams;
     const search = searchParams.get('search') || '';
     const tags = searchParams.getAll('tags[]');
@@ -25,6 +27,7 @@ export async function GET(req: NextRequest) {
       search,
       first: +first,
       skip: +skip,
+      locale,
     };
 
     if (tags?.length) {

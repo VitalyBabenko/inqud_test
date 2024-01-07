@@ -1,21 +1,44 @@
 'use client';
 
-import Link from 'next/link';
+import { Link } from '../../navigation';
 import Image from 'next/image';
 import styles from './styles.module.scss';
 import Navigation from '../navigation';
 import DropdownMenu from '../dropdownMenu';
 import { useEffect, useState } from 'react';
+import axios from 'axios';
+import { HeaderContent, HeaderProps } from '@/types/header';
+import { usePathname } from 'next/navigation';
 
-const langLinks = [
-  { label: 'English (US)', href: '/' },
-  { label: 'Deutsch', href: '/de' },
-  { label: 'Polski', href: '/pl' },
+export interface LocaleLinkProps {
+  label: string;
+  locale: 'en' | 'es' | 'ru' | 'uk';
+}
+
+const localeLinks: LocaleLinkProps[] = [
+  { label: 'English', locale: 'en' },
+  { label: 'Spanish', locale: 'es' },
+  { label: 'russian', locale: 'ru' },
+  { label: 'Ukrainian', locale: 'uk' },
 ];
 
-const Header = () => {
+const Header = ({ locale }: HeaderProps) => {
+  const [headerContent, setHeaderContent] = useState<HeaderContent>();
   const [isBurgerOpen, setIsBurgerOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+  const pathname = usePathname();
+
+  useEffect(() => {
+    const getHeaderContent = async () => {
+      const { data } = await axios.get('/api/header', {
+        params: {
+          locale: pathname.split('/')[1],
+        },
+      });
+      setHeaderContent(data.header);
+    };
+    getHeaderContent();
+  }, [pathname]);
 
   useEffect(() => {
     const updateIsMobile = () => {
@@ -45,8 +68,13 @@ const Header = () => {
     <header className={styles.header} onClick={handleLinkClick}>
       <div className={styles.container}>
         <div className={styles.logo}>
-          <Link href="/">
-            <Image src="/logo.svg" alt="logo" width={124} height={40} />
+          <Link href="/" className={styles.logoInner}>
+            <Image
+              src={headerContent?.logo.url || '/logo.svg'}
+              alt="logo"
+              width={124}
+              height={40}
+            />
           </Link>
 
           <Link href="/">
@@ -55,29 +83,32 @@ const Header = () => {
 
           {!isBurgerOpen && (
             <div className={styles.logoLinks}>
-              <Link href="#">business</Link>
-              <Link href="#">personal</Link>
+              {headerContent?.logolinks.map((logoLink) => (
+                <Link key={logoLink.name} href={logoLink.href}>
+                  {logoLink.name}
+                </Link>
+              ))}
             </div>
           )}
         </div>
 
-        <Navigation isOpen={isBurgerOpen} />
+        {headerContent && <Navigation isOpen={isBurgerOpen} links={headerContent?.navigation} />}
 
         <div className={styles.settings}>
           {(!isMobile || isBurgerOpen) && (
             <div className={styles.lang}>
               <Image src="/earth.svg" alt="earth-icon" width={32} height={32} />
-              <DropdownMenu links={langLinks} buttonLabel="EN" />
+              <DropdownMenu localeLinks={localeLinks} buttonLabel={locale.toUpperCase()} />
             </div>
           )}
 
           <div className={isBurgerOpen ? styles.authOpen : styles.auth}>
-            <Link className={styles.login} href="#">
-              Log in
+            <Link className={styles.login} href="/">
+              {headerContent?.loginbuttontext}
               <Image src="/arrowLogin.svg" alt="arrow-to-login" width={48} height={48} />
             </Link>
-            <Link className={styles.getStarted} href="#">
-              Get started
+            <Link className={styles.getStarted} href="/">
+              {headerContent?.signupbuttontext}
             </Link>
           </div>
         </div>

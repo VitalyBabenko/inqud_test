@@ -258,14 +258,15 @@
       .logo {
         justify-content: space-between;
 
-        a[href='/']:first-of-type {
+        .logoInner {
           display: none;
           width: 30px;
           height: 30px;
           background-color: red;
 
-          img[src='/logo.svg'] {
-            display: none;
+          img {
+            display: none !important;
+            background: red;
           }
         }
 

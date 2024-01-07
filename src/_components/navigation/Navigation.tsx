@@ -1,65 +1,31 @@
 import { Fragment } from 'react';
-import Link from 'next/link';
 import styles from './styles.module.scss';
 import DropdownMenu from '../dropdownMenu/DropdownMenu';
 
+import { HeaderNavItem } from '@/types/header';
+import { Link } from '@/navigation';
+
 interface NavigationProps {
   isOpen: boolean;
+  links: HeaderNavItem[];
 }
 
-const Navigation = ({ isOpen }: NavigationProps) => {
-  const links = [
-    {
-      label: 'Products',
-      href: '#',
-      subLinksTitle: 'Business',
-      subLinks: [
-        {
-          label: 'Crypto widget',
-          href: '/#',
-        },
-        {
-          label: 'API',
-          href: '/#',
-        },
-        {
-          label: 'Card 2 crypto',
-          href: '/#',
-        },
-        {
-          label: 'Crypto exchange',
-          href: '/#',
-        },
-        {
-          label: 'Recurring payments',
-          href: '/#',
-        },
-        {
-          label: 'Accept crypto',
-          href: '/#',
-        },
-      ],
-    },
-    { label: 'Company', href: '#' },
-    { label: 'Insights', href: '/insights' },
-    { label: 'Help centre', href: '#' },
-  ];
-
+const Navigation = ({ isOpen, links }: NavigationProps) => {
   return (
     <nav className={isOpen ? styles.navOpen : styles.nav}>
       <ul>
-        {links.map((link) => (
-          <Fragment key={link.label}>
-            {link.subLinks ? (
+        {links?.map((link) => (
+          <Fragment key={link.id}>
+            {link.sublinks ? (
               <DropdownMenu
                 className={styles.dropdown}
-                links={link.subLinks}
-                title={link.subLinksTitle}
-                buttonLabel={link.label}
+                links={link.sublinks}
+                title={link.title}
+                buttonLabel={link.name}
               />
             ) : (
-              <li key={link.label}>
-                <Link href={link.href}>{link.label}</Link>
+              <li key={link.id}>
+                <Link href={link.href}>{link.name}</Link>
               </li>
             )}
           </Fragment>

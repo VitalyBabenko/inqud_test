@@ -14,18 +14,17 @@ export const metadata: Metadata = {
 interface RootLayoutProps {
   children: React.ReactNode;
   params: {
-    locale: string;
+    locale: 'en' | 'es' | 'ru' | 'uk';
   };
 }
 
 export default async function RootLayout({ children, params }: RootLayoutProps) {
   const { locale } = params;
-  // const t = useTranslations('Index');
 
   return (
     <html lang={locale}>
       <body className={urbanist.className}>
-        <Header />
+        <Header locale={locale} />
         {children}
       </body>
     </html>
