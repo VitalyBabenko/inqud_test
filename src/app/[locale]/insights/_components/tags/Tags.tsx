@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { Tag } from '@/types/tag';
 
 interface TagsProps {
+  allTagsButtonText: string;
   filterPosts: () => void;
   allTags: Tag[];
   setAllTags: React.Dispatch<React.SetStateAction<Tag[]>>;
@@ -11,6 +12,7 @@ interface TagsProps {
 }
 
 const Tags: React.FC<TagsProps> = ({
+  allTagsButtonText,
   filterPosts,
   allTags,
   setAllTags,
@@ -49,7 +51,7 @@ const Tags: React.FC<TagsProps> = ({
   return (
     <div className={styles.tags}>
       <ul className={styles.selected}>
-        {selectedTags.length ? null : <li className={styles.category}>ALL</li>}
+        {selectedTags.length ? null : <li className={styles.category}>{allTagsButtonText}</li>}
         {selectedTags.map((tag) => (
           <li onClick={() => removeFromSelected(tag)} key={tag.name} className={styles.category}>
             {tag.name}

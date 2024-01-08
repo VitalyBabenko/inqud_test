@@ -18,6 +18,7 @@ export interface PageContent {
   subtitle: string;
   searchPlaceholder: string;
   searchButtonText: string;
+  allTagsButtonText: string;
 }
 
 const Insights = () => {
@@ -89,6 +90,7 @@ const Insights = () => {
         setInputValue={setInputValue}
       />
       <Tags
+        allTagsButtonText={pageContent.allTagsButtonText}
         filterPosts={filterPosts}
         allTags={allTags}
         setAllTags={setAllTags}

@@ -5,6 +5,7 @@ export const GET_INSIGHTS_PAGE_QUERY = `
         subtitle
         searchButtonText
         searchPlaceholder
+        allTagsButtonText
         }
     }
 `;
