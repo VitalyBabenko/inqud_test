@@ -4,7 +4,9 @@ import { NextRequest, NextResponse } from 'next/server';
 
 export async function GET(req: NextRequest) {
   try {
-    const locale = req.nextUrl.pathname.split('/')[1] || 'en';
+    const searchParams = req.nextUrl.searchParams;
+    const locale = searchParams.get('locale') || 'en';
+
     const query = GET_TAGS_QUERY;
     const variables = {
       locale,

@@ -1,19 +1,18 @@
 'use client';
 
-import { usePathname } from 'next/navigation';
 import styles from './styles.module.scss';
-import Link from 'next/link';
+import { Link, usePathname } from '@/navigation';
+
+const fromCapitalLetter = (inputString: string): string => {
+  if (typeof inputString !== 'string' || inputString.length === 0) {
+    return '';
+  }
+  return inputString.charAt(0).toUpperCase() + inputString.slice(1);
+};
 
 const Breadcrumb = () => {
   const pathname = usePathname();
-  const pathSegments = pathname.split('/').filter(Boolean);
-
-  const fromCapitalLetter = (inputString: string): string => {
-    if (typeof inputString !== 'string' || inputString.length === 0) {
-      return '';
-    }
-    return inputString.charAt(0).toUpperCase() + inputString.slice(1);
-  };
+  const pathSegments: string[] = pathname.split('/').filter(Boolean);
 
   return (
     <nav className={styles.breadcrumb}>
@@ -23,6 +22,7 @@ const Breadcrumb = () => {
       <span className={styles.slash}> / </span>
       {pathSegments.map((segment, index) => (
         <Link
+          // @ts-ignore-this
           href={`/${segment}`}
           key={index}
           className={index === pathSegments.length - 2 ? styles.activeLink : ''}

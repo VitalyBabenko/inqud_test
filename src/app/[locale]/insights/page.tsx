@@ -10,6 +10,7 @@ import Pagination from './_components/pagination';
 import { POSTS_PER_PAGE } from './_components/pagination/Pagination';
 import { Tag } from '@/types/tag';
 import Tags from './_components/tags';
+import { useLocale } from 'next-intl';
 
 type Props = {
   params: {
@@ -24,14 +25,23 @@ const Insights = ({ params }: Props) => {
   const [selectedTags, setSelectedTags] = useState<Tag[]>([]);
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [allPostsCount, setAllPostsCount] = useState<number>(0);
+  const locale = useLocale();
 
   useEffect(() => {
     const getData = async () => {
-      const postsResp = await axios.get('/api/posts');
+      const postsResp = await axios.get('/api/posts', {
+        params: {
+          locale,
+        },
+      });
       setPosts(postsResp.data.posts);
       setAllPostsCount(postsResp.data.postsCount);
 
-      const tagsResp = await axios.get(`/api/tags`);
+      const tagsResp = await axios.get(`/api/tags`, {
+        params: {
+          locale,
+        },
+      });
       setAllTags(tagsResp.data);
     };
     getData();
@@ -48,12 +58,7 @@ const Insights = ({ params }: Props) => {
     }
 
     const { data } = await axios.get('/api/posts', {
-      params: {
-        search,
-        tags,
-        first,
-        skip,
-      },
+      params: { locale, search, tags, first, skip },
     });
 
     setAllPostsCount(data.postsCount);

@@ -15,8 +15,8 @@ export const dynamic = 'force-dynamic';
 
 export async function GET(req: NextRequest) {
   try {
-    const locale = req.nextUrl.pathname.split('/')[1] || 'en';
     const searchParams = req.nextUrl.searchParams;
+    const locale = searchParams.get('locale') || 'en';
     const search = searchParams.get('search') || '';
     const tags = searchParams.getAll('tags[]');
     const first = searchParams.get('first') || 6; //FIXME: add variable ALL_POSTS_COUNT

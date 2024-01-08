@@ -32,7 +32,7 @@ const DropdownMenu: React.FC<DropdownMenuProps> = ({
       onMouseEnter={() => setIsOpen(true)}
       onMouseLeave={() => setIsOpen(false)}
     >
-      <button className={styles.toggleButton}>
+      <div className={styles.toggleButton}>
         {buttonLabel}
         <Image
           src="/arrow.svg"
@@ -41,7 +41,7 @@ const DropdownMenu: React.FC<DropdownMenuProps> = ({
           height={16}
           style={{ transform: `rotate(${isOpen ? '180deg' : '0deg'})` }}
         />
-      </button>
+      </div>
       {isOpen && (
         <>
           <ul className={styles.menu}>
