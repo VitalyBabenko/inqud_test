@@ -4,6 +4,7 @@ import { NextRequest, NextResponse } from 'next/server';
 
 export async function GET(req: NextRequest) {
   try {
+    const locale = req.nextUrl.searchParams.get('locale');
     const pathname = req.nextUrl.pathname;
     const pathParts = pathname.split('/');
     const slug = pathParts[pathParts.length - 1];
@@ -12,6 +13,7 @@ export async function GET(req: NextRequest) {
       query: GET_FULL_POST,
       variables: {
         slug,
+        locale,
       },
     });
 

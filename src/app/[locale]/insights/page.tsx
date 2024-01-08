@@ -33,27 +33,15 @@ const Insights = () => {
 
   useEffect(() => {
     const getData = async () => {
-      const postsResp = await axios.get('/api/posts', {
+      const { data } = await axios.get('/api/insights', {
         params: {
           locale,
         },
       });
-      setPosts(postsResp.data.posts);
-      setAllPostsCount(postsResp.data.postsCount);
-
-      const tagsResp = await axios.get(`/api/tags`, {
-        params: {
-          locale,
-        },
-      });
-      setAllTags(tagsResp.data);
-
-      const pageContentResp = await axios.get('/api/insights', {
-        params: {
-          locale,
-        },
-      });
-      setPageContent(pageContentResp.data);
+      setPageContent(data.pageContent);
+      setAllTags(data.tags);
+      setPosts(data.posts);
+      setAllPostsCount(data.postsCount);
     };
     getData();
   }, []);
@@ -68,7 +56,7 @@ const Insights = () => {
       setCurrentPage(1);
     }
 
-    const { data } = await axios.get('/api/posts', {
+    const { data } = await axios.get('/api/insights', {
       params: { locale, search, tags, first, skip },
     });
 
