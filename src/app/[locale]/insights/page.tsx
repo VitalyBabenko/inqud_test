@@ -11,20 +11,23 @@ import { POSTS_PER_PAGE } from './_components/pagination/Pagination';
 import { Tag } from '@/types/tag';
 import Tags from './_components/tags';
 import { useLocale } from 'next-intl';
+import Loading from './loading';
 
-type Props = {
-  params: {
-    locale: string;
-  };
-};
+export interface PageContent {
+  title: string;
+  subtitle: string;
+  searchPlaceholder: string;
+  searchButtonText: string;
+}
 
-const Insights = ({ params }: Props) => {
+const Insights = () => {
   const [inputValue, setInputValue] = useState<string>('');
   const [posts, setPosts] = useState<Post[]>([]);
   const [allTags, setAllTags] = useState<Tag[]>([]);
   const [selectedTags, setSelectedTags] = useState<Tag[]>([]);
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [allPostsCount, setAllPostsCount] = useState<number>(0);
+  const [pageContent, setPageContent] = useState<PageContent>();
   const locale = useLocale();
 
   useEffect(() => {
@@ -43,6 +46,13 @@ const Insights = ({ params }: Props) => {
         },
       });
       setAllTags(tagsResp.data);
+
+      const pageContentResp = await axios.get('/api/insights', {
+        params: {
+          locale,
+        },
+      });
+      setPageContent(pageContentResp.data);
     };
     getData();
   }, []);
@@ -65,10 +75,15 @@ const Insights = ({ params }: Props) => {
     setPosts(data.posts);
   };
 
+  if (!pageContent) {
+    return <Loading />;
+  }
+
   return (
     <main>
       <Breadcrumb />
       <HeadingSection
+        pageContent={pageContent}
         filterPosts={filterPosts}
         inputValue={inputValue}
         setInputValue={setInputValue}

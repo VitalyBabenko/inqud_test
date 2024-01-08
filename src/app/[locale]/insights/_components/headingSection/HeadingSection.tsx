@@ -2,14 +2,21 @@
 import Image from 'next/image';
 import styles from './styles.module.scss';
 import { FormEvent } from 'react';
+import { PageContent } from '../../page';
 
 interface HeadingSectionProps {
+  pageContent: PageContent;
   filterPosts: (search?: string | null) => void;
   inputValue: string;
   setInputValue: (value: string) => void;
 }
 
-const HeadingSection = ({ filterPosts, inputValue, setInputValue }: HeadingSectionProps) => {
+const HeadingSection = ({
+  pageContent,
+  filterPosts,
+  inputValue,
+  setInputValue,
+}: HeadingSectionProps) => {
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
     filterPosts();
@@ -22,8 +29,8 @@ const HeadingSection = ({ filterPosts, inputValue, setInputValue }: HeadingSecti
 
   return (
     <main className={styles.headingSection}>
-      <h2>Inqud insights</h2>
-      <p>Payment solutions for businesses & individuals.</p>
+      <h2>{pageContent.title}</h2>
+      <p>{pageContent.subtitle}</p>
 
       <form onSubmit={handleSubmit} className={styles.searchBlock}>
         <div className={styles.inputWrapper}>
@@ -32,7 +39,7 @@ const HeadingSection = ({ filterPosts, inputValue, setInputValue }: HeadingSecti
             name="search"
             value={inputValue}
             onChange={(e) => setInputValue(e.target.value)}
-            placeholder="Search article, industry, or product"
+            placeholder={pageContent.searchPlaceholder}
           />
           {inputValue && (
             <Image
@@ -45,7 +52,7 @@ const HeadingSection = ({ filterPosts, inputValue, setInputValue }: HeadingSecti
           )}
         </div>
 
-        <button type="submit">Search</button>
+        <button type="submit">{pageContent.searchButtonText}</button>
       </form>
     </main>
   );
