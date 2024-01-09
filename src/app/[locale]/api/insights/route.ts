@@ -35,6 +35,8 @@ export async function GET(req: NextRequest) {
       variables,
     });
 
+    console.log({ searchParams, locale, search, tags });
+
     let postsCount;
     if (search.length || tags.length) {
       postsCount = data.allPosts.length;
