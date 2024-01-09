@@ -1,6 +1,6 @@
-import { GET_FULL_POST } from '@/graphql/getPost';
-import { performRequest } from '@/lib/datocms';
 import { NextRequest, NextResponse } from 'next/server';
+import { GET_FULL_POST_QUERY } from '@/graphql/getFullPost';
+import { performRequest } from '@/lib/datocms';
 
 export async function GET(req: NextRequest) {
   try {
@@ -10,14 +10,14 @@ export async function GET(req: NextRequest) {
     const slug = pathParts[pathParts.length - 1];
 
     const { data } = await performRequest({
-      query: GET_FULL_POST,
+      query: GET_FULL_POST_QUERY,
       variables: {
         slug,
         locale,
       },
     });
 
-    return NextResponse.json({ post: data.post });
+    return NextResponse.json({ pageContent: data.postPage, post: data.post });
   } catch (error) {
     console.log(error);
     return NextResponse.json({

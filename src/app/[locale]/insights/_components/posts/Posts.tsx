@@ -5,13 +5,15 @@ import Link from 'next/link';
 
 interface PostsProps {
   posts: Post[];
+  emptyPostsText: string;
+  timeToReadText: string;
 }
 
-const Posts = ({ posts }: PostsProps) => {
+const Posts = ({ posts, emptyPostsText, timeToReadText }: PostsProps) => {
   if (!posts?.length) {
     return (
       <div className={styles.postsEmpty}>
-        <h5>Nothing was found for your request!</h5>
+        <h5>{emptyPostsText}</h5>
       </div>
     );
   }
@@ -29,7 +31,9 @@ const Posts = ({ posts }: PostsProps) => {
           <div className={styles.postFooter}>
             <span>{post.publishDate}</span>
             <Image src="/dot.svg" alt="dot" width={4} height={4} />
-            <span>{post.timeToRead.toString()} min read</span>
+            <span>
+              {post.timeToRead.toString()} {timeToReadText}
+            </span>
           </div>
         </Link>
       ))}

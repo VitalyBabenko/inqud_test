@@ -19,6 +19,8 @@ export interface PageContent {
   searchPlaceholder: string;
   searchButtonText: string;
   allTagsButtonText: string;
+  emptyPostsText: string;
+  timeToReadText: string;
 }
 
 const Insights = () => {
@@ -51,7 +53,7 @@ const Insights = () => {
     const first = POSTS_PER_PAGE;
     let skip = (currentPage - 1) * POSTS_PER_PAGE;
 
-    if (inputValue) {
+    if (inputValue && tags) {
       skip = 0;
       setCurrentPage(1);
     }
@@ -85,7 +87,11 @@ const Insights = () => {
         selectedTags={selectedTags}
         setSelectedTags={setSelectedTags}
       />
-      <Posts posts={posts} />
+      <Posts
+        posts={posts}
+        emptyPostsText={pageContent.emptyPostsText}
+        timeToReadText={pageContent.timeToReadText}
+      />
       <Pagination
         filterPosts={filterPosts}
         currentPage={currentPage}

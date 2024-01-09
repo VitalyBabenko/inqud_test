@@ -2,7 +2,6 @@ import type { Metadata } from 'next';
 import { Urbanist } from 'next/font/google';
 import Header from '@/_components/header';
 import 'reset-css';
-import { useTranslations } from 'next-intl';
 
 const urbanist = Urbanist({ subsets: ['latin'] });
 

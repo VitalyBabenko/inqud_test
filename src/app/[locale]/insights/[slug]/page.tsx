@@ -1,7 +1,6 @@
 import HeadingSection from './_components/headingSection';
 import Breadcrumb from '@/_components/breadcrumb';
 import ContentSection from './_components/contentSection';
-import { Post } from '@/types/post';
 import { useLocale } from 'next-intl';
 
 type PostPageProps = {
@@ -13,24 +12,24 @@ type PostPageProps = {
 async function getData(slug: string, locale: string) {
   const URL = process.env.NEXT_PUBLIC_API_URL;
   const response = await fetch(`${URL}/api/insights/${slug}?locale=${locale}`);
-
-  const { post } = await response.json();
-  return post;
+  return await response.json();
 }
 
 const PostPage = async ({ params: { slug } }: PostPageProps) => {
   const locale = useLocale();
-  const post: Post = await getData(slug, locale);
+  const { pageContent, post } = await getData(slug, locale);
 
   return (
     <main>
       <Breadcrumb />
       <HeadingSection
+        backButtonText={pageContent.backButtonText}
         title={post.title}
         timeToRead={post.timeToRead}
         publishDate={post.publishDate}
       />
       <ContentSection
+        pageContent={pageContent}
         content={post.content}
         industries={post.industries}
         products={post.products}

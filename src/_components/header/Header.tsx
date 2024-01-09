@@ -92,7 +92,13 @@ const Header = ({ locale }: HeaderProps) => {
           )}
         </div>
 
-        {headerContent && <Navigation isOpen={isBurgerOpen} links={headerContent?.navigation} />}
+        {headerContent && (
+          <Navigation
+            isOpen={isBurgerOpen}
+            links={headerContent?.navigation}
+            activePage={pathname.split('/')[2]}
+          />
+        )}
 
         <div className={styles.settings}>
           {(!isMobile || isBurgerOpen) && (

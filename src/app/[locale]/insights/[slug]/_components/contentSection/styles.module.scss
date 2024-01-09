@@ -90,6 +90,7 @@
 @media (max-width: 767px) {
   .contentSection {
     padding: 0 32px;
+    max-width: calc(100vw - 64px);
 
     .asideRight {
       display: flex;

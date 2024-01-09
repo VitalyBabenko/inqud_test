@@ -3,19 +3,20 @@ import styles from './styles.module.scss';
 import Image from 'next/image';
 
 interface HeadingSection {
+  backButtonText: string;
   title: string;
   timeToRead: number;
   publishDate: string;
 }
 
-const HeadingSection = ({ title, timeToRead, publishDate }: HeadingSection) => {
+const HeadingSection = ({ backButtonText, title, timeToRead, publishDate }: HeadingSection) => {
   return (
     <div className={styles.headingSection}>
       <Image src="/page-decor-left.svg" width={724} height={360} alt="left-decor" />
       <Image src="/page-decor-right.svg" width={724} height={360} alt="right-decor" />
       <Link href="/insights">
         <Image src="/arrow.svg" alt="arrow-back" width={16} height={16} />
-        Back
+        {backButtonText}
       </Link>
       <h1>{title}</h1>
       <div className={styles.postInfo}>

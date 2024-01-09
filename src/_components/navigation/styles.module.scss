@@ -16,6 +16,19 @@
       text-decoration: none;
     }
 
+    .active {
+      margin: auto 0;
+      display: flex;
+      align-content: center;
+      flex-wrap: wrap;
+      height: 100%;
+      border-bottom: 1px solid #077453;
+
+      a {
+        color: #077453;
+      }
+    }
+
     & div div {
       position: relative;
       color: black;

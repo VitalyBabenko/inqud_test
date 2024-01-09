@@ -10,7 +10,17 @@ import { Author, Industry, PostContent, Product } from '@/types/post';
 import { Tag } from '@/types/tag';
 import PostTitles from '@/_components/postTitles';
 
+interface PostPageContent {
+  backButtonText: string;
+  leftAsideTitle: string;
+  industriesTitle: string;
+  productsTitle: string;
+  tagsTitle: string;
+  authorsTitle: string;
+}
+
 type ContentSectionProps = {
+  pageContent: PostPageContent;
   content: PostContent[];
   industries: Industry[];
   products: Product[];
@@ -18,7 +28,14 @@ type ContentSectionProps = {
   authors: Author[];
 };
 
-const ContentSection = ({ content, industries, products, tags, authors }: ContentSectionProps) => {
+const ContentSection = ({
+  pageContent,
+  content,
+  industries,
+  products,
+  tags,
+  authors,
+}: ContentSectionProps) => {
   const titles = content.map((article) => article.title);
   const [activeTitle, setActiveTitle] = useState<string>(titles[0]);
   const handleIntersection = (inView: boolean, entry: IntersectionObserverEntry, title: string) => {
@@ -47,7 +64,7 @@ const ContentSection = ({ content, industries, products, tags, authors }: Conten
 
       <div className={styles.asideRight}>
         <div className={styles.asideItem}>
-          <p>Industries</p>
+          <p>{pageContent.industriesTitle}</p>
           <span>
             {industries.map((industry, i) => (
               <span key={industry.name}>
@@ -59,7 +76,7 @@ const ContentSection = ({ content, industries, products, tags, authors }: Conten
         </div>
 
         <div className={styles.asideItem}>
-          <p>Products</p>
+          <p>{pageContent.productsTitle}</p>
           <div>
             {products.map((product, i) => (
               <span key={product.name}>
@@ -71,7 +88,7 @@ const ContentSection = ({ content, industries, products, tags, authors }: Conten
         </div>
 
         <div className={styles.asideItem}>
-          <p>Tags</p>
+          <p>{pageContent.tagsTitle}</p>
           <div>
             {tags.map((tag, i) => (
               <span key={tag.name}>
@@ -83,7 +100,7 @@ const ContentSection = ({ content, industries, products, tags, authors }: Conten
         </div>
 
         <div className={styles.asideItem}>
-          <p>Authors</p>
+          <p>{pageContent.authorsTitle}</p>
           <div>
             {authors.map((author, i) => (
               <span key={author.name}>

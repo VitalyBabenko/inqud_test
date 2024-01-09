@@ -8,9 +8,10 @@ import { Link } from '@/navigation';
 interface NavigationProps {
   isOpen: boolean;
   links: HeaderNavItem[];
+  activePage: string;
 }
 
-const Navigation = ({ isOpen, links }: NavigationProps) => {
+const Navigation = ({ isOpen, links, activePage }: NavigationProps) => {
   return (
     <nav className={isOpen ? styles.navOpen : styles.nav}>
       <ul>
@@ -24,7 +25,7 @@ const Navigation = ({ isOpen, links }: NavigationProps) => {
                 buttonLabel={link.name}
               />
             ) : (
-              <li key={link.id}>
+              <li key={link.id} className={`/${activePage}` === link.href ? styles.active : ''}>
                 <Link href={link.href}>{link.name}</Link>
               </li>
             )}

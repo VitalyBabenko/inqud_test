@@ -27,6 +27,7 @@ export async function GET(req: NextRequest) {
     };
     if (tags?.length) {
       variables.in = tags;
+      variables.skip = 0;
     }
 
     const { data } = await performRequest({
