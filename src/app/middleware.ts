@@ -23,7 +23,7 @@ export function middleware(request: NextRequest) {
     (locale) => !pathname.startsWith(`/${locale}/`) && pathname !== `/${locale}`,
   );
 
-  if (['/manifest.json', '/favicon.ico'].includes(pathname)) return;
+  if (['/manifest.json', '/favicon.ico'].includes(pathname)) return NextResponse.next();
 
   if (pathnameIsMissingLocale) {
     const locale = getLocale(request);
