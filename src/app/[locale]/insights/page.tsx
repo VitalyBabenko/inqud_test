@@ -86,7 +86,6 @@ const Insights = ({ params: { locale } }: any) => {
         setSelectedTags={setSelectedTags}
       />
       <Posts
-        locale={locale}
         posts={posts}
         emptyPostsText={pageContent.emptyPostsText}
         timeToReadText={pageContent.timeToReadText}
