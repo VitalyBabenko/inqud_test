@@ -1,4 +1,5 @@
 import { Pathnames } from 'next-intl/navigation';
+import { useTransition } from 'react';
 
 export const locales = ['en', 'es', 'ru', 'uk'] as const;
 

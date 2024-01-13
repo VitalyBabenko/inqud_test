@@ -9,15 +9,16 @@ type PostPageProps = {
   };
 };
 
-async function getData(slug: string, locale: string) {
-  const URL = process.env.NEXT_PUBLIC_API_URL;
-  const response = await fetch(`${URL}/api/insights/${slug}?locale=${locale}`);
-  return await response.json();
-}
-
 const PostPage = async ({ params: { slug } }: PostPageProps) => {
   const locale = useLocale();
-  const { pageContent, post } = await getData(slug, locale);
+
+  async function getData() {
+    const URL = process.env.NEXT_PUBLIC_API_URL;
+    const response = await fetch(`${URL}/api/insights/${slug}?locale=${locale}`);
+    return await response.json();
+  }
+
+  const { pageContent, post } = await getData();
 
   return (
     <main>

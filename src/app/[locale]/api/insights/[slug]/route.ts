@@ -4,10 +4,15 @@ import { performRequest } from '@/lib/datocms';
 
 export async function GET(req: NextRequest) {
   try {
-    const locale = req.nextUrl.searchParams.get('locale');
     const pathname = req.nextUrl.pathname;
     const pathParts = pathname.split('/');
     const slug = pathParts[pathParts.length - 1];
+    const { searchParams } = new URL(req.nextUrl);
+    const locale = searchParams.get('locale');
+
+    if (!locale) {
+      console.error({ locale });
+    }
 
     const { data } = await performRequest({
       query: GET_FULL_POST_QUERY,
