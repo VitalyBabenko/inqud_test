@@ -1,11 +1,11 @@
 import HeadingSection from './_components/headingSection';
 import Breadcrumb from '@/_components/breadcrumb';
 import ContentSection from './_components/contentSection';
-import { useLocale } from 'next-intl';
 
 type PostPageProps = {
   params: {
     slug: string;
+    locale: string;
   };
 };
 
@@ -15,8 +15,7 @@ async function getData(slug: string, locale: string) {
   return await response.json();
 }
 
-const PostPage = async ({ params: { slug } }: PostPageProps) => {
-  const locale = useLocale();
+const PostPage = async ({ params: { slug, locale } }: PostPageProps) => {
   const { pageContent, post } = await getData(slug, locale);
 
   return (

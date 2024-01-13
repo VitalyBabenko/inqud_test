@@ -2,8 +2,6 @@
 
 import { StructuredText } from 'react-datocms';
 import styles from './styles.module.scss';
-
-import Link from 'next/link';
 import { InView } from 'react-intersection-observer';
 import { useState } from 'react';
 import { Author, Industry, PostContent, Product } from '@/types/post';

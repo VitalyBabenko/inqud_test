@@ -1,9 +1,8 @@
 import { Fragment } from 'react';
 import styles from './styles.module.scss';
 import DropdownMenu from '../dropdownMenu/DropdownMenu';
-
 import { HeaderNavItem } from '@/types/header';
-import { Link } from '@/navigation';
+import Link from '../link/Link';
 
 interface NavigationProps {
   isOpen: boolean;

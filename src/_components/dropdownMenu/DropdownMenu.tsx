@@ -1,12 +1,15 @@
 'use client';
 
 import { useState } from 'react';
-// import Link from 'next/link';
 import Image from 'next/image';
 import styles from './styles.module.scss';
-import { Link, usePathname } from '../../navigation';
 import { LocaleLinkProps } from '../header/Header';
 import { HeaderNavItem } from '@/types/header';
+import { usePathname } from 'next/navigation';
+import Link from '../link/Link';
+import NextLink from 'next/link';
+
+import { Locale } from '@/app/i18n-config';
 
 interface DropdownMenuProps {
   localeLinks?: LocaleLinkProps[];
@@ -25,6 +28,12 @@ const DropdownMenu: React.FC<DropdownMenuProps> = ({
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();
+  const redirectedPathName = (locale: Locale) => {
+    if (!pathname) return '/';
+    const segments = pathname.split('/');
+    segments[1] = locale;
+    return segments.join('/');
+  };
 
   return (
     <div
@@ -53,9 +62,7 @@ const DropdownMenu: React.FC<DropdownMenuProps> = ({
             ))}
             {localeLinks?.map((link) => (
               <li key={link.label}>
-                <Link href={pathname} locale={link.locale}>
-                  {link.label}
-                </Link>
+                <NextLink href={redirectedPathName(link.locale)}>{link.label}</NextLink>
               </li>
             ))}
           </ul>

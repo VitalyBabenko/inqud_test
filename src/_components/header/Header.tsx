@@ -1,6 +1,5 @@
 'use client';
 
-import { Link } from '../../navigation';
 import Image from 'next/image';
 import styles from './styles.module.scss';
 import Navigation from '../navigation';
@@ -9,6 +8,7 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { HeaderContent, HeaderProps } from '@/types/header';
 import { usePathname } from 'next/navigation';
+import Link from '../link/Link';
 
 export interface LocaleLinkProps {
   label: string;

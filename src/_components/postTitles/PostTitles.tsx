@@ -1,6 +1,5 @@
-import Link from 'next/link';
+import Link from '../link/Link';
 import styles from './styles.module.scss';
-import { createRef, forwardRef } from 'react';
 
 interface PostTitlesProps {
   titles: string[];

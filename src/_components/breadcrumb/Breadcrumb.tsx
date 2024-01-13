@@ -1,7 +1,9 @@
 'use client';
 
+import Link from '../link/Link';
 import styles from './styles.module.scss';
-import { Link, usePathname } from '@/navigation';
+import { usePathname } from 'next/navigation';
+import { Locale } from '@/app/i18n-config';
 
 const fromCapitalLetter = (inputString: string): string => {
   if (typeof inputString !== 'string' || inputString.length === 0) {
@@ -12,7 +14,7 @@ const fromCapitalLetter = (inputString: string): string => {
 
 const Breadcrumb = () => {
   const pathname = usePathname();
-  const pathSegments: string[] = pathname.split('/').filter(Boolean);
+  const pathSegments: string[] = pathname.split('/').filter(Boolean).splice(1);
 
   return (
     <nav className={styles.breadcrumb}>
@@ -22,7 +24,6 @@ const Breadcrumb = () => {
       <span className={styles.slash}> / </span>
       {pathSegments.map((segment, index) => (
         <Link
-          // @ts-ignore-this
           href={`/${segment}`}
           key={index}
           className={index === pathSegments.length - 2 ? styles.activeLink : ''}

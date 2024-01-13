@@ -10,7 +10,6 @@ import Pagination from './_components/pagination';
 import { POSTS_PER_PAGE } from './_components/pagination/Pagination';
 import { Tag } from '@/types/tag';
 import Tags from './_components/tags';
-import { useLocale } from 'next-intl';
 import Loading from './loading';
 
 export interface PageContent {
@@ -23,7 +22,7 @@ export interface PageContent {
   timeToReadText: string;
 }
 
-const Insights = () => {
+const Insights = ({ params: { locale } }: any) => {
   const [inputValue, setInputValue] = useState<string>('');
   const [posts, setPosts] = useState<Post[]>([]);
   const [allTags, setAllTags] = useState<Tag[]>([]);
@@ -31,7 +30,6 @@ const Insights = () => {
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [allPostsCount, setAllPostsCount] = useState<number>(0);
   const [pageContent, setPageContent] = useState<PageContent>();
-  const locale = useLocale();
 
   useEffect(() => {
     const getData = async () => {
@@ -88,6 +86,7 @@ const Insights = () => {
         setSelectedTags={setSelectedTags}
       />
       <Posts
+        locale={locale}
         posts={posts}
         emptyPostsText={pageContent.emptyPostsText}
         timeToReadText={pageContent.timeToReadText}

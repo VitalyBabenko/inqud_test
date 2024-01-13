@@ -1,14 +1,7 @@
-import CustomLink from '@/_components/customLink';
-
-type Props = {
-  params: { locale: string };
-};
-
-export default async function Home({ params }: Props) {
+export default async function Home() {
   return (
     <main>
       <h1>Home</h1>
-      <CustomLink href={'/insights'}>Insights</CustomLink>
     </main>
   );
 }

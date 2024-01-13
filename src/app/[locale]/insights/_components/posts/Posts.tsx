@@ -1,7 +1,7 @@
 import { Post } from '@/types/post';
 import styles from './styles.module.scss';
 import Image from 'next/image';
-import Link from 'next/link';
+import Link from '@/_components/link';
 
 interface PostsProps {
   posts: Post[];
