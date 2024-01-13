@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import { Urbanist } from 'next/font/google';
 import Header from '@/_components/header';
 import 'reset-css';
-import { i18n, type Locale } from '@/app/i18n-config';
+import { i18n, type Locale } from '@/app/[locale]/i18n-config';
 
 const urbanist = Urbanist({ subsets: ['latin'] });
 
