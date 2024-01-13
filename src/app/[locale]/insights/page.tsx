@@ -23,7 +23,7 @@ export interface PageContent {
   timeToReadText: string;
 }
 
-const Insights = () => {
+const Insights = ({ params: { locale } }: any) => {
   const [inputValue, setInputValue] = useState<string>('');
   const [posts, setPosts] = useState<Post[]>([]);
   const [allTags, setAllTags] = useState<Tag[]>([]);
@@ -31,7 +31,7 @@ const Insights = () => {
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [allPostsCount, setAllPostsCount] = useState<number>(0);
   const [pageContent, setPageContent] = useState<PageContent>();
-  const locale = useLocale();
+  console.log(locale);
 
   useEffect(() => {
     const getData = async () => {
