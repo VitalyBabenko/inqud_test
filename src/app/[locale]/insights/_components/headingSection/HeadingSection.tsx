@@ -2,10 +2,10 @@
 import Image from 'next/image';
 import styles from './styles.module.scss';
 import { FormEvent } from 'react';
-import { PageContent } from '../../page';
+import { InsightsPageContent } from '@/types/insightsPage';
 
 interface HeadingSectionProps {
-  pageContent: PageContent;
+  pageContent: InsightsPageContent;
   filterPosts: (search?: string | null) => void;
   inputValue: string;
   setInputValue: (value: string) => void;
