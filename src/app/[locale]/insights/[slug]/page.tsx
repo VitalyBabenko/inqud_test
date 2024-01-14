@@ -10,18 +10,29 @@ type PostPageProps = {
 };
 
 async function getData(slug: string, locale: string) {
-  const URL = process.env.NEXT_PUBLIC_API_URL;
-  const response = await fetch(`${URL}/api/insights`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      locale,
-      slug,
-    }),
-  });
-  return await response.json();
+  try {
+    const URL = process.env.NEXT_PUBLIC_API_URL;
+
+    const response = await fetch(`${URL}/api/insights`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        slug,
+        locale,
+      }),
+    });
+
+    if (!response.ok) {
+      throw new Error(`Error: ${response.statusText}`);
+    }
+
+    return await response.json();
+  } catch (error) {
+    console.error('An error occurred while retrieving a post or page content:', error);
+    throw error;
+  }
 }
 
 const PostPage = async ({ params: { slug, locale } }: PostPageProps) => {
