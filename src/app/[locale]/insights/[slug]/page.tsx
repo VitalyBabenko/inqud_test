@@ -20,6 +20,7 @@ async function getData(slug: string, locale: string) {
       },
       body: JSON.stringify({
         locale,
+        slug,
       }),
     });
 
@@ -36,8 +37,6 @@ async function getData(slug: string, locale: string) {
 
 const PostPage = async ({ params: { slug, locale } }: PostPageProps) => {
   const { pageContent, post } = await getData(slug, locale);
-
-  // console.log(pageContent);
 
   if (!pageContent) {
     return <Loading />;

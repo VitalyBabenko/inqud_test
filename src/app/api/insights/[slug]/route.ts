@@ -4,10 +4,10 @@ import { performRequest } from '@/lib/datocms';
 
 export async function POST(req: NextRequest) {
   try {
-    const { locale } = await req.json();
-    const pathname = req.nextUrl.pathname;
-    const pathParts = pathname.split('/');
-    const slug = pathParts[pathParts.length - 1];
+    const { locale, slug } = await req.json();
+    // const pathname = req.nextUrl.pathname;
+    // const pathParts = pathname.split('/');
+    // const slug = pathParts[pathParts.length - 1];
 
     const { data } = await performRequest({
       query: GET_FULL_POST_QUERY,
