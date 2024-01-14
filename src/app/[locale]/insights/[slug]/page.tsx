@@ -1,6 +1,7 @@
 import HeadingSection from './_components/headingSection';
 import Breadcrumb from '@/_components/breadcrumb';
 import ContentSection from './_components/contentSection';
+import Loading from '../loading';
 
 type PostPageProps = {
   params: {
@@ -12,14 +13,12 @@ type PostPageProps = {
 async function getData(slug: string, locale: string) {
   try {
     const URL = process.env.NEXT_PUBLIC_API_URL;
-
-    const response = await fetch(`${URL}/api/insights`, {
+    const response = await fetch(`${URL}/api/insights/${slug}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        slug,
         locale,
       }),
     });
@@ -37,6 +36,12 @@ async function getData(slug: string, locale: string) {
 
 const PostPage = async ({ params: { slug, locale } }: PostPageProps) => {
   const { pageContent, post } = await getData(slug, locale);
+
+  // console.log(pageContent);
+
+  if (!pageContent) {
+    return <Loading />;
+  }
 
   return (
     <main>
