@@ -30,11 +30,7 @@ const Header = ({ locale }: HeaderProps) => {
 
   useEffect(() => {
     const getHeaderContent = async () => {
-      const { data } = await axios.get('/api/header', {
-        params: {
-          locale: pathname.split('/')[1],
-        },
-      });
+      const { data } = await axios.post('/api/header', { locale: pathname.split('/')[1] });
       setHeaderContent(data.header);
     };
     getHeaderContent();

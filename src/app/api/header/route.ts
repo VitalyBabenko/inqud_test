@@ -2,9 +2,9 @@ import { GET_HEADER_QUERY } from '@/graphql/getHeader';
 import { performRequest } from '@/lib/datocms';
 import { NextRequest, NextResponse } from 'next/server';
 
-export async function GET(req: NextRequest) {
+export async function POST(req: NextRequest) {
   try {
-    const locale = req.nextUrl.searchParams.get('locale');
+    const { locale } = await req.json();
 
     const { data } = await performRequest({
       query: GET_HEADER_QUERY,
