@@ -11,7 +11,16 @@ type PostPageProps = {
 
 async function getData(slug: string, locale: string) {
   const URL = process.env.NEXT_PUBLIC_API_URL;
-  const response = await fetch(`${URL}/api/insights/${slug}?locale=${locale}`);
+  const response = await fetch(`${URL}/api/insights`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      locale,
+      slug,
+    }),
+  });
   return await response.json();
 }
 

@@ -1,5 +1,4 @@
 'use client';
-
 import Breadcrumb from '@/_components/breadcrumb';
 import React, { useEffect, useState } from 'react';
 import HeadingSection from './_components/headingSection';
@@ -11,16 +10,7 @@ import { POSTS_PER_PAGE } from './_components/pagination/Pagination';
 import { Tag } from '@/types/tag';
 import Tags from './_components/tags';
 import Loading from './loading';
-
-export interface PageContent {
-  title: string;
-  subtitle: string;
-  searchPlaceholder: string;
-  searchButtonText: string;
-  allTagsButtonText: string;
-  emptyPostsText: string;
-  timeToReadText: string;
-}
+import { InsightsPageContent } from '@/types/insightsPage';
 
 const Insights = ({ params: { locale } }: any) => {
   const [inputValue, setInputValue] = useState<string>('');
@@ -29,20 +19,17 @@ const Insights = ({ params: { locale } }: any) => {
   const [selectedTags, setSelectedTags] = useState<Tag[]>([]);
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [allPostsCount, setAllPostsCount] = useState<number>(0);
-  const [pageContent, setPageContent] = useState<PageContent>();
+  const [pageContent, setPageContent] = useState<InsightsPageContent>();
 
   useEffect(() => {
     const getData = async () => {
-      const { data } = await axios.get('/api/insights', {
-        params: {
-          locale,
-        },
-      });
+      const { data } = await axios.post('/api/insights', { locale });
       setPageContent(data.pageContent);
       setAllTags(data.tags);
       setPosts(data.posts);
       setAllPostsCount(data.postsCount);
     };
+
     getData();
   }, []);
 
@@ -56,8 +43,12 @@ const Insights = ({ params: { locale } }: any) => {
       setCurrentPage(1);
     }
 
-    const { data } = await axios.get('/api/insights', {
-      params: { locale, search, tags, first, skip },
+    const { data } = await axios.post('/api/insights', {
+      locale,
+      search,
+      tags,
+      first,
+      skip,
     });
 
     setAllPostsCount(data.postsCount);

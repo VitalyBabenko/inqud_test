@@ -5,7 +5,6 @@ import { NextRequest, NextResponse } from 'next/server';
 export async function POST(req: NextRequest) {
   try {
     const { locale } = await req.json();
-
     const { data } = await performRequest({
       query: GET_HEADER_QUERY,
       variables: {
