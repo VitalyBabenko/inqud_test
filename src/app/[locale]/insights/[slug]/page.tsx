@@ -2,6 +2,8 @@ import HeadingSection from './_components/headingSection';
 import Breadcrumb from '@/_components/breadcrumb';
 import ContentSection from './_components/contentSection';
 import Loading from '../loading';
+import { performRequest } from '@/lib/datocms';
+import { GET_FULL_POST_QUERY } from '@/graphql/getFullPost';
 
 type PostPageProps = {
   params: {
@@ -12,23 +14,15 @@ type PostPageProps = {
 
 async function getData(slug: string, locale: string) {
   try {
-    const URL = process.env.NEXT_PUBLIC_API_URL;
-    const response = await fetch(`${URL}/api/insights/${slug}`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        locale,
+    const { data } = await performRequest({
+      query: GET_FULL_POST_QUERY,
+      variables: {
         slug,
-      }),
+        locale,
+      },
     });
 
-    if (!response.ok) {
-      throw new Error(`Error: ${response.statusText}`);
-    }
-
-    return await response.json();
+    return { pageContent: data.postPage, post: data.post };
   } catch (error) {
     console.error('An error occurred while retrieving a post or page content:', error);
     throw error;
