@@ -30,6 +30,7 @@ const Insights = ({ params: { locale } }: any) => {
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [allPostsCount, setAllPostsCount] = useState<number>(0);
   const [pageContent, setPageContent] = useState<PageContent>();
+  console.log(locale);
 
   useEffect(() => {
     const getData = async () => {

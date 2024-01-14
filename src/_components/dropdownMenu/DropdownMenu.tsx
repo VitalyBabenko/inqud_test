@@ -9,7 +9,7 @@ import { usePathname } from 'next/navigation';
 import Link from '../link/Link';
 import NextLink from 'next/link';
 
-import { Locale } from '../../app/i18n-config';
+// import { Locale } from '../../app/[locale]/i18n-config';
 
 interface DropdownMenuProps {
   localeLinks?: LocaleLinkProps[];
@@ -28,7 +28,7 @@ const DropdownMenu: React.FC<DropdownMenuProps> = ({
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();
-  const redirectedPathName = (locale: Locale) => {
+  const redirectedPathName = (locale: any) => {
     if (!pathname) return '/';
     const segments = pathname.split('/');
     segments[1] = locale;

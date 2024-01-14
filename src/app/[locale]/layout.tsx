@@ -2,13 +2,8 @@ import type { Metadata } from 'next';
 import { Urbanist } from 'next/font/google';
 import Header from '@/_components/header';
 import 'reset-css';
-import { i18n, type Locale } from '../i18n-config';
 
 const urbanist = Urbanist({ subsets: ['latin'] });
-
-export async function generateStaticParams() {
-  return i18n.locales.map((locale) => ({ lang: locale }));
-}
 
 export const metadata: Metadata = {
   title: 'Inqud',
@@ -18,7 +13,7 @@ export const metadata: Metadata = {
 interface RootLayoutProps {
   children: React.ReactNode;
   params: {
-    locale: Locale;
+    locale: any;
   };
 }
 
