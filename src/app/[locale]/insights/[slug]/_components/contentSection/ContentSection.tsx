@@ -44,7 +44,11 @@ const ContentSection = ({
 
   return (
     <div className={styles.contentSection}>
-      <PostTitles titles={titles} activeTitle={activeTitle} />
+      <PostTitles
+        titles={titles}
+        activeTitle={activeTitle}
+        leftAsideTitle={pageContent.leftAsideTitle}
+      />
       <div className={styles.center}>
         {content.map((article, i): any => (
           <InView

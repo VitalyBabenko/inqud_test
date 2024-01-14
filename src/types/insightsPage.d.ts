@@ -15,3 +15,13 @@ export interface InsightsPageContent {
   emptyPostsText: string;
   timeToReadText: string;
 }
+
+export interface PostPageContent {
+  backButtonText: string;
+  leftAsideTitle: string;
+  minReadText: string;
+  industriesTitle: string;
+  productsTitle: string;
+  tagsTitle: string;
+  authorsTitle: string;
+}

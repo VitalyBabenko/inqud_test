@@ -21,7 +21,6 @@ async function getData(slug: string, locale: string) {
         locale,
       },
     });
-
     return { pageContent: data.postPage, post: data.post };
   } catch (error) {
     console.error('An error occurred while retrieving a post or page content:', error);
@@ -32,15 +31,16 @@ async function getData(slug: string, locale: string) {
 const PostPage = async ({ params: { slug, locale } }: PostPageProps) => {
   const { pageContent, post } = await getData(slug, locale);
 
+  console.log(pageContent);
+
   if (!pageContent) {
     return <Loading />;
   }
-
   return (
     <main>
       <Breadcrumb />
       <HeadingSection
-        backButtonText={pageContent.backButtonText}
+        pageContent={pageContent}
         title={post.title}
         timeToRead={post.timeToRead}
         publishDate={post.publishDate}

@@ -3,7 +3,6 @@
 import Link from '../link/Link';
 import styles from './styles.module.scss';
 import { usePathname } from 'next/navigation';
-// import { Locale } from '../../app/[locale]/i18n-config';
 
 const fromCapitalLetter = (inputString: string): string => {
   if (typeof inputString !== 'string' || inputString.length === 0) {

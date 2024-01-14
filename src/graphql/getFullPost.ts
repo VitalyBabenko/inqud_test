@@ -32,6 +32,7 @@ export const GET_FULL_POST_QUERY = `
         postPage(locale:$locale) {
             backButtonText
             leftAsideTitle
+            minReadText
             industriesTitle
             productsTitle
             tagsTitle
